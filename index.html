@@ -17,15 +17,27 @@
 
 <body onload="loadPokémon();">
     <div id="pokédex" class="pokédex">
+        <div onclick="openEntry();" class="pokédex-element">
+            <div id="pokédex-name" class="pokédex-name"></div>
+            <div class="pokédex-type-box">
+                <button id="pokédex-type-btn-slot1" class="type-btn fire-btn"></button>
+                <button id="pokédex-type-btn-slot2" class="type-btn d-none"></button>
+            </div>
+            <div id="pokédex-image-box" class="pokédex-image-box">
 
+            </div>
+        </div>
     </div>
-    <div class="pokédex-single">
+
+    <div id="pokédex-single" class="pokédex-single d-none">
+        <img id="pokémon-entry-background-picture" class="pokémon-entry-background-picture" src="img/fire.png" alt="">
         <div class="pokémon-entry">
-            <div class="pokémon-entry-background">
+            <div id="pokémon-entry-background-layer" class="pokémon-entry-background-layer">
                 
             </div>
             <div class="arrow-zone">
                 <i class="fas fa-chevron-left"></i>
+                <i onclick="closeEntry();" class="fas fa-times"></i>
                 <i class="fas fa-chevron-right"></i>
             </div>
             <div id="pokémon-number" class="pokémon-number">
@@ -35,10 +47,10 @@
 
             </div>
             <div id="pokémon-type-box" class="pokémon-type-box">
-                <button class="type-btn fire-btn">Fire</button>
-                <button class="type-btn">Other</button>
+                <button id="pokémon-type-btn-slot1" class="type-btn fire-btn">Fire</button>
+                <button id="pokémon-type-btn-slot2" class="type-btn d-none">Other</button>
             </div>
-            <div id="pokémon-image" class="pokémon-image">
+            <div id="pokémon-image-box" class="pokémon-image-box">
 
             </div>
             <div class="pokémon-info">

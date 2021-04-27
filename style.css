@@ -1,12 +1,17 @@
 :root {
+    --pokédex-element-height: 120px;
+    --pokédex-element-width: 220px;
+    --pokédex-element-margin: 32px;
     --pokémon-entry-height: 700px;
     --pokémon-entry-width: 350px;
-    --main-border-radius: 24px;
+    --pokémon-entry-padding: 20px;
+    --main-border-radius: 20px;
     --pokémon-picture-height: 250px;
     --main-font-size: 16px;
     --font-color-primary: rgb(43, 44, 44);
     --font-color-secondary: rgb(170, 171, 172);
     --font-color-tertiary: rgb(199, 200, 202);
+    --main-box-shadow: 0 0 20px white;
 }
 
 .d-none {
@@ -20,13 +25,58 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: var(--main-font-size);
     background-color: lightgrey;
+    background-image: url(img/background.jpg);
+    background-size: cover;
 }
 
 .pokédex {
-    background-color: rgb(247, 214, 214);
+    margin: 7%;
+    background-color: rgba(255, 255, 255, 0.85);
     color: white;
     font-size: 16px;
     display: flex;
+}
+
+.pokédex-element {
+    position: relative;
+    margin: var(--pokédex-element-margin);
+    height: var(--pokédex-element-height);
+    min-width: var(--pokédex-element-width);
+    border: 2px solid white;
+    box-shadow: var(--main-box-shadow);
+    border-radius: var(--main-border-radius);
+    padding-left: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    cursor: pointer;
+    background-color: rgba(240, 128, 48, 1);
+}
+
+.pokédex-name {
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 12px;
+}
+
+.pokédex-type-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.pokédex-type-box button {
+    margin: 4px;
+}
+
+.pokédex-image-box {
+    position: absolute;
+    right: -20px;
+    top: -20px;
+}
+
+.pokédex-image-box img {
+    height: calc(var(--pokédex-element-height) + 30px);
 }
 
 .pokédex-single {
@@ -42,22 +92,26 @@ body {
     height: var(--pokémon-entry-height);
     width: var(--pokémon-entry-width);
 
-    /* background picture */
     background-color: white;
-    background: url('img/fire.png');
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position-y: 20%;
-    z-index: 2;
-
+    border: 2px solid white;
     border-radius: var(--main-border-radius);
-    padding: 20px;
+    padding: var(--pokémon-entry-padding);
     display: flex;
     flex-direction: column;
     
 }
 
-.pokémon-entry-background {
+
+.pokémon-entry-background-picture {
+    position: absolute;
+    bottom: 50%;
+    width: 100%;
+    z-index: 1;
+    left: -50%;
+    opacity: 0.7;
+}
+
+.pokémon-entry-background-layer {
     position: absolute;
     padding: 20px;
     top: 0;
@@ -65,9 +119,14 @@ body {
     height: var(--pokémon-entry-height);
     width: var(--pokémon-entry-width);
     border-radius: var(--main-border-radius);
-    background-color: rgba(250, 44, 17, 0.5);
-    z-index: -1;
+    background-color: rgba(240, 128, 48, 0.5);
+    z-index: 2;
 }
+
+.arrow-zone, .pokémon-number, .pokémon-name, .pokémon-type-box {
+    z-index: 3;
+}
+
 
 .arrow-zone {
     position: absolute;
@@ -87,7 +146,8 @@ body {
     /* background-color: rgb(205, 50, 50); */
     font-size: 28px;
     color: white;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+    margin-left: 4px;
 }
 
 .pokémon-number {
@@ -98,7 +158,7 @@ body {
 
 .type-btn {
     height: 28px;
-    width: 60px;
+    width: 70px;
     border-radius: var(--main-border-radius);
     font-family: inherit;
     font-size: 16px;
@@ -113,20 +173,21 @@ body {
     border: solid 1px rgb(250, 215, 154);
 }
 
-.pokémon-image {
+.pokémon-image-box {
     z-index: 2;
     display: flex;
     justify-content: flex-end;
+    z-index: 4;
 }
 
-.pokémon-image img {
+.pokémon-image-box img {
     height: var(--pokémon-picture-height);
     margin-top: -40px;
 }
 
 .pokémon-info {
     position: absolute;
-    bottom: 0;
+    bottom: -1px;
     left: 0;
     right: 0;
     height: 55%;
@@ -134,6 +195,7 @@ body {
     background-color: white;
     border-radius: var(--main-border-radius);
     overflow-x: hidden;
+    z-index: 3;
 }
 
 .pokémon-info-headlines {
@@ -161,7 +223,7 @@ body {
 .noHighlighting {
     border-bottom: unset !important;
     margin-bottom: unset !important;
-    color: var(--font-color-tertiary);
+    color: var(--font-color-tertiary) !important;
     font-weight: unset !important;
 }
 
