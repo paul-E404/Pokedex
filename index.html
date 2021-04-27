@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+
+    <title>API Pokédex</title>
+</head>
+
+<body onload="loadPokémon();">
+    <div id="pokédex" class="pokédex">
+
+    </div>
+    <div class="pokédex-single">
+        <div class="pokémon-entry">
+            <div id="pokémon-number" class="pokémon-number">
+
+            </div>
+            <div id="pokémon-name" class="pokémon-name">
+
+            </div>
+            <div id="pokémon-type-box" class="pokémon-type-box">
+                <button class="type-btn">Fire</button>
+                <button class="type-btn">Fire</button>
+            </div>
+            <div id="pokémon-image" class="pokémon-image">
+
+            </div>
+            <div class="pokémon-info">
+                <div class="pokémon-info-headlines">
+                    <div id="about">About</div>
+                    <div id="base-stats">Base Stats</div>
+                    <div id="moves">Moves</div>
+                </div>
+                <!-- <table class="about-table info-table">
+                    <tbody>
+                        <tr>
+                            <td>Height</td>
+                            <td>27 cm</td>
+                        </tr>
+                        <tr>
+                            <td>Weight</td>
+                            <td>30 kg</td>
+                        </tr>
+                        <tr>
+                            <td>Abilities</td>
+                            <td>Flammenhaummichtot</td>
+                        </tr>
+                    </tbody>
+                </table> -->
+                <table class="base-stats-table info-table">
+                    <tbody>
+                        <tr>
+                            <td>HP</td>
+                            <td>45</td>
+                            <td>
+                                <div class="base-stats-bar-container">
+                                    <div class="base-stats-bar-value"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Attack</td>
+                            <td>60</td>
+                            <td>
+                                <div class="base-stats-bar-container">
+                                    <div class="base-stats-bar-value"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Defense</td>
+                            <td>50</td>
+                            <td>
+                                <div class="base-stats-bar-container">
+                                    <div class="base-stats-bar-value"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Sp. Atk</td>
+                            <td>43</td>
+                            <td>
+                                <div class="base-stats-bar-container">
+                                    <div class="base-stats-bar-value"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Sp. Def</td>
+                            <td>28</td>
+                            <td>
+                                <div class="base-stats-bar-container">
+                                    <div class="base-stats-bar-value"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Speed</td>
+                            <td>70</td>
+                            <td>
+                                <div class="base-stats-bar-container">
+                                    <div class="base-stats-bar-value"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
