@@ -73,6 +73,8 @@ body {
     position: absolute;
     right: -20px;
     top: -20px;
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
 }
 
 .pokédex-image-box img {
@@ -281,8 +283,7 @@ body {
 
 .base-stats-bar-value {
     height: 3px;
-    background-color: yellowgreen;
-    width: 30%;                             /* Javascript! */
+    background-color: yellowgreen;                   
 }
 
 .moves-table thead tr td:first-child {
