@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 
+    <!-- Embed Font Awesome -->
+    <script src="https://kit.fontawesome.com/c8b4666b1b.js" crossorigin="anonymous"></script>
+
     <title>API Pokédex</title>
 </head>
 
@@ -18,6 +21,13 @@
     </div>
     <div class="pokédex-single">
         <div class="pokémon-entry">
+            <div class="pokémon-entry-background">
+                
+            </div>
+            <div class="arrow-zone">
+                <i class="fas fa-chevron-left"></i>
+                <i class="fas fa-chevron-right"></i>
+            </div>
             <div id="pokémon-number" class="pokémon-number">
 
             </div>
@@ -25,19 +35,20 @@
 
             </div>
             <div id="pokémon-type-box" class="pokémon-type-box">
-                <button class="type-btn">Fire</button>
-                <button class="type-btn">Fire</button>
+                <button class="type-btn fire-btn">Fire</button>
+                <button class="type-btn">Other</button>
             </div>
             <div id="pokémon-image" class="pokémon-image">
 
             </div>
             <div class="pokémon-info">
                 <div class="pokémon-info-headlines">
-                    <div id="about">About</div>
-                    <div id="base-stats">Base Stats</div>
-                    <div id="moves">Moves</div>
+                    <div onclick="showInfoTable('about');" id="about">About</div>
+                    <div onclick="showInfoTable('base-stats');" id="base-stats" class="noHighlighting">Base Stats</div>
+                    <div onclick="showInfoTable('moves');" id="moves" class="noHighlighting">Moves</div>
                 </div>
-                <!-- <table class="about-table info-table">
+
+                <table id="about-table" class="about-table info-table">
                     <tbody>
                         <tr>
                             <td>Height</td>
@@ -52,8 +63,9 @@
                             <td>Flammenhaummichtot</td>
                         </tr>
                     </tbody>
-                </table> -->
-                <table class="base-stats-table info-table">
+                </table>
+
+                <table id="base-stats-table" class="base-stats-table info-table">
                     <tbody>
                         <tr>
                             <td>HP</td>
@@ -111,6 +123,30 @@
                         </tr>
                     </tbody>
                 </table>
+
+                <table id="moves-table" class="moves-table info-table">
+                    <thead>
+                        <tr>
+                            <td>Level</td>
+                            <td>Move</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0</td>
+                            <td>Kratzer</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Glut</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Silberblick</td>
+                        </tr>
+                    </tbody>
+                </table>
+
             </div>
         </div>
     </div>
