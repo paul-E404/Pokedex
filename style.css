@@ -25,8 +25,26 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: var(--main-font-size);
     background-color: lightgrey;
+}
+
+.background-image {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 100%;
     background-image: url(img/background.jpg);
     background-size: cover;
+    z-index: -1;
+}
+
+.opened-entry-bg {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 }
 
 .pokédex {
@@ -95,22 +113,19 @@ body {
     left: -50%;
     height: var(--pokémon-entry-height);
     width: var(--pokémon-entry-width);
-
     background-color: white;
     border: 2px solid white;
     border-radius: var(--main-border-radius);
     padding: var(--pokémon-entry-padding);
     display: flex;
     flex-direction: column;
-    
 }
-
 
 .pokémon-entry-background-picture {
     position: absolute;
     bottom: 50%;
     width: 100%;
-    z-index: 1;
+    z-index: 4 !important;
     left: -50%;
     opacity: 0.7;
 }
@@ -124,13 +139,12 @@ body {
     width: var(--pokémon-entry-width);
     border-radius: var(--main-border-radius);
     background-color: rgba(240, 128, 48, 0.5);
-    z-index: 2;
+    z-index: 5 !important;
 }
 
 .arrow-zone, .pokémon-number, .pokémon-name, .pokémon-type-box {
-    z-index: 3;
+    z-index: 6 !important;
 }
-
 
 .arrow-zone {
     position: absolute;
@@ -160,6 +174,8 @@ body {
     color: white;
 }
 
+/* TYPE BUTTONS */
+
 .type-btn {
     height: 28px;
     width: 70px;
@@ -170,6 +186,61 @@ body {
     color: white;
 }
 
+.normal-btn {
+    background: linear-gradient(rgb(168, 168, 120), rgb(168, 168, 120));
+    /* text-shadow: 0 1px 0 
+    border: solid 1px  */
+}
+
+.fighting-btn {
+    background: linear-gradient(rgb(192, 48, 40), rgb(192, 48, 40));
+   /*  text-shadow: 0 1px 0 
+    border: solid 1px  */
+
+}
+
+.flying-btn {
+    background: linear-gradient(rgb(168, 144, 240), rgb(168, 144, 240));
+ /*    text-shadow: 0 1px 0 
+    border: solid 1px  */
+}
+
+.poison-btn {
+    background: linear-gradient(rgb(160, 64, 160), rgb(160, 64, 160));
+    /* text-shadow: 0 1px 0 
+    border: solid 1px  */
+}
+
+.ground-btn {
+    background: linear-gradient(rgb(224, 192, 104), rgb(224, 192, 104));
+    /* text-shadow: 0 1px 0 
+    border: solid 1px  */
+}
+
+.rock-btn {
+    background: linear-gradient(rgb(184, 160, 56), rgb(184, 160, 56));
+   /*  text-shadow: 0 1px 0 
+    border: solid 1px  */
+}
+
+.bug-btn {
+    background: linear-gradient(rgb(168, 184, 32), rgb(168, 184, 32));
+    /* text-shadow: 0 1px 0 
+    border: solid 1px  */
+}
+
+.ghost-btn {
+    background: linear-gradient(rgb(112, 88, 152), rgb(112, 88, 152));
+   /*  text-shadow: 0 1px 0 
+    border: solid 1px  */
+}
+
+.steel-btn {
+    background: linear-gradient(rgb(210, 210, 215), rgb(210, 210, 215));
+   /*  text-shadow: 0 1px 0 
+    border: solid 1px  */
+}
+
 .fire-btn {
     /* background-color: rgb(240, 128, 48); */
     background: linear-gradient(rgb(254, 190, 77), rgb(240, 128, 48));
@@ -177,11 +248,52 @@ body {
     border: solid 1px rgb(250, 215, 154);
 }
 
+.water-btn {
+    background: linear-gradient(rgb(146, 173, 236), rgb(104, 144, 240));
+    text-shadow: 0 1px 0 rgb(194, 207, 238);
+    border: solid 1px rgb(194, 207, 238);
+}
+
+.grass-btn {
+    background: linear-gradient(rgb(162, 221, 133), rgb(120, 200, 80));
+    text-shadow: 0 1px 0 rgb(176, 238, 144);
+    border: solid 1px rgb(176, 238, 144);
+}
+
+.electric-btn {
+    background: linear-gradient(rgb(248, 235, 48), rgb(248, 208, 48));
+    text-shadow: 0 1px 0 rgb(252, 243, 126);
+    border: solid 1px rgb(252, 243, 126);
+}
+
+.psychic-btn {
+    background: linear-gradient(rgb(248, 129, 165), rgb(248, 88, 136));
+    text-shadow: 0 1px 0 rgb(253, 179, 201);
+    border: solid 1px rgb(253, 179, 201);
+} 
+
+.ice-btn {
+    background: linear-gradient(rgb(192, 226, 226), rgb(134, 211, 211));
+    text-shadow: 0 1px 0 rgb(164, 191, 245);
+    border: solid 1px rgb(187, 208, 252);
+}
+
+.dragon-btn {
+    background: linear-gradient(rgb(143, 99, 245), rgb(112, 56, 248));
+    text-shadow: 0 1px 0 rgb(170, 137, 248);
+    border: solid 1px rgb(170, 137, 248);
+}
+
+.dark-btn {
+    background: linear-gradient(rgb(112, 88, 72), rgb(75, 51, 36));
+    text-shadow: 0 1px 0 rgb(122, 104, 91);
+    border: solid 1px rgb(122, 104, 91);
+}
+
 .pokémon-image-box {
-    z-index: 2;
     display: flex;
     justify-content: flex-end;
-    z-index: 4;
+    z-index: 7 !important;
 }
 
 .pokémon-image-box img {
@@ -199,7 +311,7 @@ body {
     background-color: white;
     border-radius: var(--main-border-radius);
     overflow-x: hidden;
-    z-index: 3;
+    z-index: 6 !important;
 }
 
 .pokémon-info-headlines {
@@ -238,7 +350,6 @@ body {
     margin-top: 20px;
     margin-bottom: 20px;
     font-size: 14px;
-    
 }
 
 .about-table {
@@ -285,7 +396,7 @@ body {
 
 .base-stats-bar-value {
     height: 3px;
-    background-color: yellowgreen;                   
+    background-color: yellowgreen;
 }
 
 .moves-table thead tr td:first-child {
@@ -311,7 +422,6 @@ body {
 .moves-table tbody tr td:nth-child(2) {
     padding-left: 20px;
 }
-
 
 /* TYPE COLORS */
 

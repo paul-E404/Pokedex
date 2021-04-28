@@ -1,18 +1,19 @@
 let currentPokémon;
 let currentPokémonList = [];
 let id;
+let keyIsPressed = false;
 
 async function init() {
     let url = 'https://pokeapi.co/api/v2/pokemon?limit=151&offset=0';
     let response = await fetch(url);
-    let pkmnList = await response.json(); 
+    let pkmnList = await response.json();
 
     for (let i = 0; i < pkmnList.results.length; i++) {
-        id = i; 
+        id = i;
         currentPokémonURL = pkmnList.results[i].url;
-        loadPokémon(id, currentPokémonURL);
+        await loadPokémon(id, currentPokémonURL);
     }
-    console.log("currentPokémonList" , currentPokémonList);
+    console.log("currentPokémonList", currentPokémonList);
 }
 
 async function loadPokémon(id, currentPokémonURL) {
@@ -36,7 +37,7 @@ function generateHTMLForPokédex(id) {
     return `<div onclick="openEntry(${id});" class="pokédex-element">
                 <div id="pokédex-name-${id}" class="pokédex-name"></div>
                 <div class="pokédex-type-box">
-                    <button id="pokédex-type-btn-slot1-${id}" class="type-btn fire-btn"></button>
+                    <button id="pokédex-type-btn-slot1-${id}" class="type-btn dark-btn"></button>
                     <button id="pokédex-type-btn-slot2-${id}" class="type-btn d-none"></button>
                 </div>
                 <div id="pokédex-image-box-${id}" class="pokédex-image-box">
@@ -69,14 +70,41 @@ function upperCaseFirstLetter(string) {
 
 
 function openEntry(id) {
+
+    console.log("id", id);
+    listenForKeys(id);
+
+    /* Aufrufen des Event-Listeners innerhalb der Funktion: funktioniet gar nicht! id ist keine globale Variable, keine Ahnung warum ?! */
+    document.onkeydown = function(e){
+        let key = e.code
+        if (key == 'ArrowLeft') {
+            openEntry(id--);
+            console.log("id", id);
+        }
+        if (key == 'ArrowRight') {
+            openEntry(id++);
+            console.log("id", id);
+        }
+    };
+
+
+    //switch from first pokémon entry to last one by clicking left arrow
+    if (id < 0) {
+        id = currentPokémonList.length - 1;
+    }
+
     showPokémon(id);
     let pokédexSingle = document.getElementById('pokédex-single');
+    let openedEntryBg = document.getElementById('open-entry-bg');
     pokédexSingle.classList.remove('d-none');
+    openedEntryBg.classList.remove('d-none');
 }
 
 function closeEntry() {
     let pokédexSingle = document.getElementById('pokédex-single');
+    let openedEntryBg = document.getElementById('open-entry-bg');
     pokédexSingle.classList.add('d-none');
+    openedEntryBg.classList.add('d-none');
 }
 
 function showPokémon(id) {
@@ -92,9 +120,9 @@ function generateHTMLForSingleEntry(id) {
 
                 </div>
                 <div class="arrow-zone">
-                    <i class="fas fa-chevron-left"></i>
+                    <i onclick="openEntry(${(id - 1) % currentPokémonList.length});" class="fas fa-chevron-left"></i>
                     <i onclick="closeEntry();" class="fas fa-times"></i>
-                    <i class="fas fa-chevron-right"></i>
+                    <i onclick="openEntry(${(id + 1) % currentPokémonList.length});" class="fas fa-chevron-right"></i>
                 </div>
                 <div id="pokémon-number-${id}" class="pokémon-number">
 
@@ -103,7 +131,7 @@ function generateHTMLForSingleEntry(id) {
 
                 </div>
                 <div id="pokémon-type-box" class="pokémon-type-box">
-                    <button id="pokémon-type-btn-slot1-${id}" class="type-btn fire-btn">Fire</button>
+                    <button id="pokémon-type-btn-slot1-${id}" class="type-btn dark-btn">Fire</button>
                     <button id="pokémon-type-btn-slot2-${id}" class="type-btn d-none">Other</button>
                 </div>
                 <div id="pokémon-image-box-${id}" class="pokémon-image-box">
@@ -386,4 +414,34 @@ function removeHighlighting(info) {
     }
 }
 
+
+function listenForKeys(id) {
+
+    document.addEventListener('keydown', function (e) {
+        let key = e.code;
+        if (keyIsPressed == false) {
+            if (key == 'ArrowLeft') {
+                console.log("Aktuelle id: ", id);
+                keyIsPressed = true;
+                openEntry(id--);
+            }
+            if (key == 'ArrowRight') {
+                console.log("Aktuelle id: ", id);
+                keyIsPressed = true;
+                openEntry(id++);
+            }
+        }
+        console.log("keyIsPressed", keyIsPressed);
+    });
+
+document.addEventListener('keyup', function (e) {
+    let key = e.code;
+    if (keyIsPressed == true) {
+        if (key == 'ArrowLeft' || key == 'ArrowRight') {
+            keyIsPressed = false;
+        }
+        console.log("keyIsPressed", keyIsPressed);
+    }
+});
+}
 
