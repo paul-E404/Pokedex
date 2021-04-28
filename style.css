@@ -80,6 +80,7 @@ body {
 
 .pokédex-image-box img {
     height: calc(var(--pokédex-element-height) + 30px);
+    width: calc(var(--pokédex-element-width) / 1.5);
 }
 
 .pokédex-single {

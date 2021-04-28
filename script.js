@@ -1,20 +1,18 @@
 let currentPokémon;
-let pkmnList;
+let currentPokémonList = [];
 let id;
-let idList = [];
 
 async function init() {
     let url = 'https://pokeapi.co/api/v2/pokemon?limit=151&offset=0';
     let response = await fetch(url);
-    pkmnList = await response.json();
+    let pkmnList = await response.json(); 
 
     for (let i = 0; i < pkmnList.results.length; i++) {
-        id = i;
-        idList.push(id);
+        id = i; 
         currentPokémonURL = pkmnList.results[i].url;
-        console.log(currentPokémonURL);
         loadPokémon(id, currentPokémonURL);
     }
+    console.log("currentPokémonList" , currentPokémonList);
 }
 
 async function loadPokémon(id, currentPokémonURL) {
@@ -22,7 +20,7 @@ async function loadPokémon(id, currentPokémonURL) {
     let response = await fetch(url);
     currentPokémon = await response.json();
 
-    console.log(currentPokémon);
+    currentPokémonList.push(currentPokémon);
 
     showPokédex(id);
     renderPokédexInfo(id);
@@ -35,7 +33,7 @@ function showPokédex(id) {
 }
 
 function generateHTMLForPokédex(id) {
-    return `<div onclick="openEntry(${id});" id="${id}" class="pokédex-element">
+    return `<div onclick="openEntry(${id});" class="pokédex-element">
                 <div id="pokédex-name-${id}" class="pokédex-name"></div>
                 <div class="pokédex-type-box">
                     <button id="pokédex-type-btn-slot1-${id}" class="type-btn fire-btn"></button>
@@ -59,7 +57,7 @@ function renderPokédexInfo(id) {
         pokédexTypeBtnSlot2.classList.remove('d-none');
         pokédexTypeBtnSlot2.innerHTML = upperCaseFirstLetter(currentPokémon.types[1].type['name']);
     }
-    pokédexImageBox.innerHTML = `<img src="${currentPokémon.sprites.other['official-artwork'].front_default}" alt="picture-${currentPokémon.name}">`;
+    pokédexImageBox.innerHTML = `<img src="${currentPokémon.sprites.other['dream_world'].front_default}" alt="picture-${currentPokémon.name}">`;
 
 }
 
@@ -220,18 +218,18 @@ function renderPokémonInfo(id) {
     let pokémonTypeBtnSlot2 = document.getElementById(`pokémon-type-btn-slot2-${id}`);
     let pokémonImageBox = document.getElementById(`pokémon-image-box-${id}`);
 
-    pokémonName.innerHTML = upperCaseFirstLetter(currentPokémon.name);
-    pokémonNumber.innerHTML = '#00' + currentPokémon.game_indices[6].game_index;
-    pokémonTypeBtnSlot1.innerHTML = upperCaseFirstLetter(currentPokémon.types[0].type['name']);
-    if (currentPokémon.types.length > 1) {
+    pokémonName.innerHTML = upperCaseFirstLetter(currentPokémonList[id].name);
+    pokémonNumber.innerHTML = '#00' + currentPokémonList[id].game_indices[6].game_index;
+    pokémonTypeBtnSlot1.innerHTML = upperCaseFirstLetter(currentPokémonList[id].types[0].type['name']);
+    if (currentPokémonList[id].types.length > 1) {
         pokémonTypeBtnSlot2.classList.remove('d-none');
-        pokémonTypeBtnSlot2.innerHTML = upperCaseFirstLetter(currentPokémon.types[1].type['name']);
+        pokémonTypeBtnSlot2.innerHTML = upperCaseFirstLetter(currentPokémonList[id].types[1].type['name']);
     }
-    pokémonImageBox.innerHTML = `<img src="${currentPokémon.sprites.other['official-artwork'].front_default}" alt="picture-${currentPokémon.name}">`;
+    pokémonImageBox.innerHTML = `<img src="${currentPokémonList[id].sprites.other['official-artwork'].front_default}" alt="picture-${currentPokémonList[id].name}">`;
 
     renderAbout(id);
     renderBaseStats(id);
-    renderMoves();
+    renderMoves(id);
 
 }
 
@@ -243,10 +241,10 @@ function renderAbout(id) {
     let pkmnAbilities = document.getElementById(`pkmn-abilities-${id}`);
     let abilitiesArr = [];
 
-    pkmnHeight.innerHTML = currentPokémon.height / 10 + " m";
-    pkmnWeight.innerHTML = currentPokémon.weight / 10 + " kg";
-    for (let i = 0; i < currentPokémon.abilities.length; i++) {
-        let ability = currentPokémon.abilities[i].ability['name'];
+    pkmnHeight.innerHTML = currentPokémonList[id].height / 10 + " m";
+    pkmnWeight.innerHTML = currentPokémonList[id].weight / 10 + " kg";
+    for (let i = 0; i < currentPokémonList[id].abilities.length; i++) {
+        let ability = currentPokémonList[id].abilities[i].ability['name'];
         abilitiesArr.push(ability);
     }
     pkmnAbilities.innerHTML = abilitiesArr.join(", ");
@@ -263,12 +261,12 @@ function renderBaseStats(id) {
     let spDef = document.getElementById(`sp-def-${id}`);
     let speed = document.getElementById(`speed-${id}`);
 
-    let hpValue = currentPokémon.stats[0].base_stat;
-    let attackValue = currentPokémon.stats[1].base_stat;
-    let defenseValue = currentPokémon.stats[2].base_stat;
-    let spAtkValue = currentPokémon.stats[3].base_stat;
-    let spDefValue = currentPokémon.stats[4].base_stat;
-    let speedValue = currentPokémon.stats[5].base_stat;
+    let hpValue = currentPokémonList[id].stats[0].base_stat;
+    let attackValue = currentPokémonList[id].stats[1].base_stat;
+    let defenseValue = currentPokémonList[id].stats[2].base_stat;
+    let spAtkValue = currentPokémonList[id].stats[3].base_stat;
+    let spDefValue = currentPokémonList[id].stats[4].base_stat;
+    let speedValue = currentPokémonList[id].stats[5].base_stat;
 
     hp.innerHTML = hpValue;
     attack.innerHTML = attackValue;
@@ -293,18 +291,18 @@ function renderBaseStatsBar(hpValue, attackValue, defenseValue, spAtkValue, spDe
 
 }
 
-function renderMoves() {
+function renderMoves(id) {
 
     //JSON-Array with all levels and moves
     levelAndMovesArray = [];
 
-    for (let i = 0; i < currentPokémon.moves.length; i++) {
-        for (let j = 0; j < currentPokémon.moves[i].version_group_details.length; j++) {
-            let moveInfo = currentPokémon.moves[i].version_group_details;
+    for (let i = 0; i < currentPokémonList[id].moves.length; i++) {
+        for (let j = 0; j < currentPokémonList[id].moves[i].version_group_details.length; j++) {
+            let moveInfo = currentPokémonList[id].moves[i].version_group_details;
             if (moveLearnedByLevelUp(moveInfo, j)) {
                 if (moveVersionRubySapphire(moveInfo, j)) {
                     let level = moveInfo[j].level_learned_at;
-                    let move = currentPokémon.moves[i].move['name'];
+                    let move = currentPokémonList[id].moves[i].move['name'];
                     let levelAndMoveJSON = { "level": level, "move": move };
                     levelAndMovesArray.push(levelAndMoveJSON);
                 }
@@ -312,7 +310,6 @@ function renderMoves() {
         }
     }
     compareNumbers(levelAndMovesArray);
-    console.log("levelAndMovesArray", levelAndMovesArray);
     showMoves(levelAndMovesArray);
 }
 
