@@ -37,7 +37,7 @@ function generateHTMLForPokédex(id) {
     return `<div onclick="openEntry(${id});" class="pokédex-element">
                 <div id="pokédex-name-${id}" class="pokédex-name"></div>
                 <div class="pokédex-type-box">
-                    <button id="pokédex-type-btn-slot1-${id}" class="type-btn dark-btn"></button>
+                    <button id="pokédex-type-btn-slot1-${id}" class="type-btn normal-btn"></button>
                     <button id="pokédex-type-btn-slot2-${id}" class="type-btn d-none"></button>
                 </div>
                 <div id="pokédex-image-box-${id}" class="pokédex-image-box">
@@ -131,7 +131,7 @@ function generateHTMLForSingleEntry(id) {
 
                 </div>
                 <div id="pokémon-type-box" class="pokémon-type-box">
-                    <button id="pokémon-type-btn-slot1-${id}" class="type-btn dark-btn">Fire</button>
+                    <button id="pokémon-type-btn-slot1-${id}" class="type-btn normal-btn">Fire</button>
                     <button id="pokémon-type-btn-slot2-${id}" class="type-btn d-none">Other</button>
                 </div>
                 <div id="pokémon-image-box-${id}" class="pokémon-image-box">

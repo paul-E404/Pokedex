@@ -187,58 +187,58 @@ body {
 }
 
 .normal-btn {
-    background: linear-gradient(rgb(168, 168, 120), rgb(168, 168, 120));
-    /* text-shadow: 0 1px 0 
-    border: solid 1px  */
+    background: linear-gradient(rgb(212, 212, 185), rgb(168, 168, 120));
+    text-shadow: 0 1px 0 rgb(204, 204, 186);
+    border: solid 1px rgb(204, 204, 186);
 }
 
 .fighting-btn {
-    background: linear-gradient(rgb(192, 48, 40), rgb(192, 48, 40));
-   /*  text-shadow: 0 1px 0 
-    border: solid 1px  */
+    background: linear-gradient(rgb(214, 102, 96), rgb(192, 48, 40));
+    text-shadow: 0 1px 0 rgb(223, 123, 117);
+    border: solid 1px rgb(223, 123, 117);
 
 }
 
 .flying-btn {
-    background: linear-gradient(rgb(168, 144, 240), rgb(168, 144, 240));
- /*    text-shadow: 0 1px 0 
-    border: solid 1px  */
+    background: linear-gradient(rgb(213, 201, 250), rgb(168, 144, 240));
+    text-shadow: 0 1px 0 rgb(195, 182, 238);
+    border: solid 1px rgb(195, 182, 238);
 }
 
 .poison-btn {
-    background: linear-gradient(rgb(160, 64, 160), rgb(160, 64, 160));
-    /* text-shadow: 0 1px 0 
-    border: solid 1px  */
+    background: linear-gradient(rgb(199, 111, 199), rgb(160, 64, 160));
+    text-shadow: 0 1px 0 rgb(209, 143, 209);
+    border: solid 1px rgb(209, 143, 209);
 }
 
 .ground-btn {
-    background: linear-gradient(rgb(224, 192, 104), rgb(224, 192, 104));
-    /* text-shadow: 0 1px 0 
-    border: solid 1px  */
+    background: linear-gradient(rgb(241, 214, 139), rgb(224, 192, 104));
+    text-shadow: 0 1px 0 rgb(250, 234, 189);
+    border: solid 1px rgb(245, 220, 151);
 }
 
 .rock-btn {
-    background: linear-gradient(rgb(184, 160, 56), rgb(184, 160, 56));
-   /*  text-shadow: 0 1px 0 
-    border: solid 1px  */
+    background: linear-gradient(rgb(214, 191, 90), rgb(167, 142, 35));
+    text-shadow: 0 1px 0 rgb(233, 211, 116);
+    border: solid 1px rgb(218, 195, 97);
 }
 
 .bug-btn {
-    background: linear-gradient(rgb(168, 184, 32), rgb(168, 184, 32));
-    /* text-shadow: 0 1px 0 
-    border: solid 1px  */
+    background: linear-gradient(rgb(200, 216, 57), rgb(131, 184, 32));
+    text-shadow: 0 1px 0 rgb(219, 230, 121);
+    border: solid 1px rgb(219, 231, 105);
 }
 
 .ghost-btn {
-    background: linear-gradient(rgb(112, 88, 152), rgb(112, 88, 152));
-   /*  text-shadow: 0 1px 0 
-    border: solid 1px  */
+    background: linear-gradient(rgb(130, 117, 151), rgb(102, 73, 150));
+    text-shadow: 0 1px 0 rgb(144, 136, 158);
+    border: solid 1px rgb(144, 136, 158);
 }
 
 .steel-btn {
-    background: linear-gradient(rgb(210, 210, 215), rgb(210, 210, 215));
-   /*  text-shadow: 0 1px 0 
-    border: solid 1px  */
+    background: linear-gradient(rgb(202, 202, 206), rgb(167, 167, 170));
+    text-shadow: 0 1px 0 rgb(226, 226, 230);
+    border: solid 1px rgb(203, 203, 206);
 }
 
 .fire-btn {
