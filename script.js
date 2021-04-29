@@ -30,20 +30,72 @@ async function loadPokémon(id, currentPokémonURL) {
 function showPokédex(id) {
     let pokédex = document.getElementById('pokédex');
     pokédex.innerHTML += generateHTMLForPokédex(id);
+    fillTypeColor(id, 'bg');
+    fillTypeColor(id, 'btn-pokédex');
+    /*   fillTypeBackgroundColor(id);
+      fillTypeButtonColor(id); */
     renderPokédexInfo(id);
 }
 
 function generateHTMLForPokédex(id) {
-    return `<div onclick="openEntry(${id});" class="pokédex-element">
+    return `<div onclick="openEntry(${id});" id="pokédex-element-${id}" class="pokédex-element">
                 <div id="pokédex-name-${id}" class="pokédex-name"></div>
                 <div class="pokédex-type-box">
-                    <button id="pokédex-type-btn-slot1-${id}" class="type-btn normal-btn"></button>
+                    <button id="pokédex-type-btn-slot1-${id}" class="type-btn"></button>
                     <button id="pokédex-type-btn-slot2-${id}" class="type-btn d-none"></button>
                 </div>
                 <div id="pokédex-image-box-${id}" class="pokédex-image-box">
                 </div>
             </div>`;
 }
+
+
+
+function fillTypeColor(id, position) {
+    let typePrimary = currentPokémon.types[0].type['name'];
+    let typeSecondary;
+
+    //if secondary type exists
+    if (secondaryTypeExists(currentPokémon)) {
+        typeSecondary = currentPokémon.types[1].type['name'];
+    }
+
+    switch (position) {
+        case 'bg': fillTypeColorBackground(id, typePrimary, typeSecondary); break;
+        case 'btn-pokédex': fillTypeColorBtnPokédex(id, typePrimary, typeSecondary); break;
+        case 'pic' : fillTypeColorBackgroundPicture(id, typePrimary, typeSecondary); break;
+        case 'layer' : fillTypeColorLayer(id, typePrimary, typeSecondary); break;
+        case 'btn-pokémon' : fillTypeColorBtnPokémon(id, typePrimary, typeSecondary); break;
+        default: console.log("Keine Übereinstimmung bei fillTypeColor");
+    }
+}
+
+
+function secondaryTypeExists(currentPokémon) {
+    return currentPokémon.types.length > 1;
+}
+
+
+function fillTypeColorBackground(id, typePrimary, typeSecondary) {
+    //flying is never primary type => normal/flying types are handled as primary flying types
+    if (typePrimary == 'normal' && typeSecondary == 'flying') {
+        typePrimary = 'flying';
+    }
+    document.getElementById(`pokédex-element-${id}`).classList.add(typePrimary);
+}
+
+    
+  
+    
+
+
+function fillTypeColorBtnPokédex(id, typePrimary, typeSecondary) {
+
+    document.getElementById(`pokédex-type-btn-slot1-${id}`).classList.add(`${typePrimary}-btn`);
+    document.getElementById(`pokédex-type-btn-slot2-${id}`).classList.add(`${typeSecondary}-btn`);
+}
+
+
 
 function renderPokédexInfo(id) {
 
@@ -54,7 +106,7 @@ function renderPokédexInfo(id) {
 
     pokédexName.innerHTML = upperCaseFirstLetter(currentPokémon.name);
     pokédexTypeBtnSlot1.innerHTML = upperCaseFirstLetter(currentPokémon.types[0].type['name']);
-    if (currentPokémon.types.length > 1) {
+    if (secondaryTypeExists(currentPokémon)) {
         pokédexTypeBtnSlot2.classList.remove('d-none');
         pokédexTypeBtnSlot2.innerHTML = upperCaseFirstLetter(currentPokémon.types[1].type['name']);
     }
@@ -82,6 +134,8 @@ function openEntry(id) {
         id = 0;
     }
 
+    currentPokémon = currentPokémonList[id];
+
     listenForKeyDown(id);
 
     showPokémon(id);
@@ -101,13 +155,16 @@ function closeEntry() {
 function showPokémon(id) {
     let pokédexSingle = document.getElementById('pokédex-single');
     pokédexSingle.innerHTML = generateHTMLForSingleEntry(id);
+    fillTypeColor(id, 'pic');
+    fillTypeColor(id, 'layer');
+    fillTypeColor(id, 'btn-pokémon');
     renderPokémonInfo(id);
 }
 
 function generateHTMLForSingleEntry(id) {
-    return `<img id="pokémon-entry-background-picture-${id}" class="pokémon-entry-background-picture" src="img/water.jpg" alt="">
+    return `<img id="pokémon-entry-background-picture-${id}" class="pokémon-entry-background-picture" src="" alt="">
             <div class="pokémon-entry">
-                <div id="pokémon-entry-background-layer-${id}" class="pokémon-entry-background-layer water-layer">
+                <div id="pokémon-entry-background-layer-${id}" class="pokémon-entry-background-layer">
 
                 </div>
                 <div class="arrow-zone">
@@ -122,7 +179,7 @@ function generateHTMLForSingleEntry(id) {
 
                 </div>
                 <div id="pokémon-type-box" class="pokémon-type-box">
-                    <button id="pokémon-type-btn-slot1-${id}" class="type-btn normal-btn">Fire</button>
+                    <button id="pokémon-type-btn-slot1-${id}" class="type-btn">Fire</button>
                     <button id="pokémon-type-btn-slot2-${id}" class="type-btn d-none">Other</button>
                 </div>
                 <div id="pokémon-image-box-${id}" class="pokémon-image-box">
@@ -226,6 +283,38 @@ function generateHTMLForSingleEntry(id) {
                 </div>
             </div>`
 }
+
+function fillTypeColorBackgroundPicture(id, typePrimary, typeSecondary) {
+
+    //flying is never primary type => normal/flying types are handled as primary flying types
+    if (typePrimary == 'normal' && typeSecondary == 'flying') {
+        typePrimary = 'flying';
+        document.getElementById(`pokémon-entry-background-picture-${id}`).src = 'img/flying.png';
+    }
+    else {
+        document.getElementById(`pokémon-entry-background-picture-${id}`).src = `img/${typePrimary}.jpg`;
+    }
+
+
+}
+
+
+function fillTypeColorLayer(id, typePrimary, typeSecondary) {
+
+    //flying is never primary type => normal/flying types are handled as primary flying types
+    if (typePrimary == 'normal' && typeSecondary == 'flying') {
+        typePrimary = 'flying';
+    }
+    document.getElementById(`pokémon-entry-background-layer-${id}`).classList.add(`${typePrimary}-layer`);
+}
+
+
+function fillTypeColorBtnPokémon(id, typePrimary, typeSecondary) {
+    document.getElementById(`pokémon-type-btn-slot1-${id}`).classList.add(`${typePrimary}-btn`);
+    document.getElementById(`pokémon-type-btn-slot2-${id}`).classList.add(`${typeSecondary}-btn`);
+}
+
+
 
 function renderPokémonInfo(id) {
 
@@ -406,7 +495,7 @@ function removeHighlighting(info) {
 }
 
 function listenForKeyDown(id) {
-    document.onkeydown = function(e){
+    document.onkeydown = function (e) {
         let key = e.code
         if (key == 'ArrowLeft' && keyIsPressed == false) {
             keyIsPressed = true;

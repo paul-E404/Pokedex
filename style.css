@@ -69,7 +69,7 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     cursor: pointer;
-    background-color: rgba(240, 128, 48, 1);
+    /* background-color: rgba(240, 128, 48, 1); */
 }
 
 .pokédex-name {
@@ -92,7 +92,7 @@ body {
     position: absolute;
     right: -20px;
     top: -20px;
-    background-color: rgba(255, 255, 255, 0.25);
+    /* background-color: rgba(255, 255, 255, 0.25); */
     border-radius: 50%;
 }
 
@@ -148,7 +148,6 @@ body {
     height: var(--pokémon-entry-height);
     width: var(--pokémon-entry-width);
     border-radius: var(--main-border-radius);
-   /*  background-color: rgba(240, 128, 48, 0.5); */
     z-index: 5 !important;
 }
 
@@ -334,105 +333,111 @@ body {
 .normal-btn {
     background: linear-gradient(rgb(212, 212, 185), rgb(168, 168, 120));
     text-shadow: 0 1px 0 rgb(204, 204, 186);
-    border: solid 1px rgb(204, 204, 186);
+    border: solid 2px rgb(204, 204, 186);
 }
 
 .fighting-btn {
     background: linear-gradient(rgb(214, 102, 96), rgb(192, 48, 40));
     text-shadow: 0 1px 0 rgb(223, 123, 117);
-    border: solid 1px rgb(223, 123, 117);
+    border: solid 2px rgb(223, 123, 117);
 
 }
 
 .flying-btn {
     background: linear-gradient(rgb(213, 201, 250), rgb(168, 144, 240));
     text-shadow: 0 1px 0 rgb(195, 182, 238);
-    border: solid 1px rgb(195, 182, 238);
+    border: solid 2px rgb(195, 182, 238);
 }
 
 .poison-btn {
     background: linear-gradient(rgb(199, 111, 199), rgb(160, 64, 160));
     text-shadow: 0 1px 0 rgb(209, 143, 209);
-    border: solid 1px rgb(209, 143, 209);
+    border: solid 2px rgb(209, 143, 209);
 }
 
 .ground-btn {
     background: linear-gradient(rgb(241, 214, 139), rgb(224, 192, 104));
     text-shadow: 0 1px 0 rgb(250, 234, 189);
-    border: solid 1px rgb(245, 220, 151);
+    border: solid 2px rgb(245, 220, 151);
 }
 
 .rock-btn {
     background: linear-gradient(rgb(214, 191, 90), rgb(167, 142, 35));
     text-shadow: 0 1px 0 rgb(233, 211, 116);
-    border: solid 1px rgb(218, 195, 97);
+    border: solid 2px rgb(218, 195, 97);
 }
 
 .bug-btn {
     background: linear-gradient(rgb(200, 216, 57), rgb(131, 184, 32));
     text-shadow: 0 1px 0 rgb(219, 230, 121);
-    border: solid 1px rgb(219, 231, 105);
+    border: solid 2px rgb(219, 231, 105);
 }
 
 .ghost-btn {
     background: linear-gradient(rgb(130, 117, 151), rgb(102, 73, 150));
     text-shadow: 0 1px 0 rgb(144, 136, 158);
-    border: solid 1px rgb(144, 136, 158);
+    border: solid 2px rgb(144, 136, 158);
 }
 
 .steel-btn {
     background: linear-gradient(rgb(202, 202, 206), rgb(167, 167, 170));
     text-shadow: 0 1px 0 rgb(226, 226, 230);
-    border: solid 1px rgb(203, 203, 206);
+    border: solid 2px rgb(203, 203, 206);
 }
 
 .fire-btn {
     /* background-color: rgb(240, 128, 48); */
     background: linear-gradient(rgb(254, 190, 77), rgb(240, 128, 48));
     text-shadow: 0 1px 0 rgb(250, 215, 154);
-    border: solid 1px rgb(250, 215, 154);
+    border: solid 2px rgb(250, 215, 154);
 }
 
 .water-btn {
     background: linear-gradient(rgb(146, 173, 236), rgb(104, 144, 240));
     text-shadow: 0 1px 0 rgb(194, 207, 238);
-    border: solid 1px rgb(194, 207, 238);
+    border: solid 2px rgb(194, 207, 238);
 }
 
 .grass-btn {
     background: linear-gradient(rgb(162, 221, 133), rgb(120, 200, 80));
     text-shadow: 0 1px 0 rgb(176, 238, 144);
-    border: solid 1px rgb(176, 238, 144);
+    border: solid 2px rgb(176, 238, 144);
 }
 
 .electric-btn {
     background: linear-gradient(rgb(248, 235, 48), rgb(248, 208, 48));
     text-shadow: 0 1px 0 rgb(252, 243, 126);
-    border: solid 1px rgb(252, 243, 126);
+    border: solid 2px rgb(252, 243, 126);
 }
 
 .psychic-btn {
-    background: linear-gradient(rgb(248, 129, 165), rgb(248, 88, 136));
+    background: linear-gradient(rgb(248, 129, 165), rgb(248, 88, 187));
     text-shadow: 0 1px 0 rgb(253, 179, 201);
-    border: solid 1px rgb(253, 179, 201);
+    border: solid 2px rgb(253, 179, 201);
 } 
 
 .ice-btn {
     background: linear-gradient(rgb(192, 226, 226), rgb(134, 211, 211));
     text-shadow: 0 1px 0 rgb(164, 191, 245);
-    border: solid 1px rgb(187, 208, 252);
+    border: solid 2px rgb(187, 208, 252);
 }
 
 .dragon-btn {
-    background: linear-gradient(rgb(143, 99, 245), rgb(112, 56, 248));
+    background: linear-gradient(rgb(123, 100, 253), rgb(85, 56, 248));
     text-shadow: 0 1px 0 rgb(170, 137, 248);
-    border: solid 1px rgb(170, 137, 248);
+    border: solid 2px rgb(170, 137, 248);
 }
 
 .dark-btn {
     background: linear-gradient(rgb(112, 88, 72), rgb(75, 51, 36));
     text-shadow: 0 1px 0 rgb(122, 104, 91);
-    border: solid 1px rgb(122, 104, 91);
+    border: solid 2px rgb(122, 104, 91);
+}
+
+.fairy-btn {
+    background: linear-gradient(rgb(249, 206, 252), rgb(249, 173, 255));
+    text-shadow: 0 1px 0 rgb(253, 221, 255);
+    border: solid 2px rgb(253, 221, 255);
 }
 
 
@@ -492,7 +497,7 @@ body {
 }
 
 .psychic {
-    background-color: rgb(248, 88, 136);
+    background-color: rgb(248, 88, 187);
 }
 
 .ice {
@@ -500,11 +505,15 @@ body {
 }
 
 .dragon {
-    background-color: rgb(112, 56, 248);
+    background-color: rgb(85, 56, 248);
 }
 
 .dark {
     background-color: rgb(112, 88, 72);
+}
+
+.fairy {
+    background-color: rgb(249, 173, 255);
 }
 
 
@@ -512,11 +521,11 @@ body {
 /* TYPE LAYERS */
 
 .normal-layer {
-    background-color: rgba(168, 168, 120, 0.5);
+    background-color: rgba(219, 219, 194, 0.2);
 }
 
 .fighting-layer {
-    background-color: rgba(192, 48, 40, 0.5);
+    background-color: rgba(192, 48, 40, 0.3);
 }
 
 .flying-layer {
@@ -548,7 +557,7 @@ body {
 }
 
 .fire-layer {
-    background-color: rgba(240, 128, 48, 0.5);
+    background-color: rgba(240, 77, 48, 0.2);
 }
 
 .water-layer {
@@ -564,7 +573,7 @@ body {
 }
 
 .psychic-layer {
-    background-color: rgba(248, 88, 136, 0.5);
+    background-color: rgba(248, 88, 187, 0.5);
 }
 
 .ice-layer {
@@ -572,9 +581,13 @@ body {
 }
 
 .dragon-layer {
-    background-color: rgba(112, 56, 248, 0.5);
+    background-color: rgba(85, 56, 248, 0.5);
 }
 
 .dark-layer {
     background-color: rgba(112, 88, 72, 0.5);
+}
+
+.fairy-layer {
+    background-color: rgba(249, 173, 255, 0.5);
 }
