@@ -4,7 +4,7 @@ let id;
 let keyIsPressed = false;
 
 async function init() {
-    let url = 'https://pokeapi.co/api/v2/pokemon?limit=151&offset=0';
+    let url = 'https://pokeapi.co/api/v2/pokemon?limit=51&offset=0';
     let response = await fetch(url);
     let pkmnList = await response.json();
 
@@ -72,26 +72,17 @@ function upperCaseFirstLetter(string) {
 function openEntry(id) {
 
     console.log("id", id);
-    listenForKeys(id);
-
-    /* Aufrufen des Event-Listeners innerhalb der Funktion: funktioniet gar nicht! id ist keine globale Variable, keine Ahnung warum ?! */
-    document.onkeydown = function(e){
-        let key = e.code
-        if (key == 'ArrowLeft') {
-            openEntry(id--);
-            console.log("id", id);
-        }
-        if (key == 'ArrowRight') {
-            openEntry(id++);
-            console.log("id", id);
-        }
-    };
-
 
     //switch from first pokémon entry to last one by clicking left arrow
     if (id < 0) {
         id = currentPokémonList.length - 1;
     }
+
+    if (id > currentPokémonList.length - 1) {
+        id = 0;
+    }
+
+    listenForKeyDown(id);
 
     showPokémon(id);
     let pokédexSingle = document.getElementById('pokédex-single');
@@ -114,9 +105,9 @@ function showPokémon(id) {
 }
 
 function generateHTMLForSingleEntry(id) {
-    return `<img id="pokémon-entry-background-picture-${id}" class="pokémon-entry-background-picture" src="img/fire.png" alt="">
+    return `<img id="pokémon-entry-background-picture-${id}" class="pokémon-entry-background-picture" src="img/water.jpg" alt="">
             <div class="pokémon-entry">
-                <div id="pokémon-entry-background-layer-${id}" class="pokémon-entry-background-layer">
+                <div id="pokémon-entry-background-layer-${id}" class="pokémon-entry-background-layer water-layer">
 
                 </div>
                 <div class="arrow-zone">
@@ -414,25 +405,22 @@ function removeHighlighting(info) {
     }
 }
 
-
-function listenForKeys(id) {
-
-    document.addEventListener('keydown', function (e) {
-        let key = e.code;
-        if (keyIsPressed == false) {
-            if (key == 'ArrowLeft') {
-                console.log("Aktuelle id: ", id);
-                keyIsPressed = true;
-                openEntry(id--);
-            }
-            if (key == 'ArrowRight') {
-                console.log("Aktuelle id: ", id);
-                keyIsPressed = true;
-                openEntry(id++);
-            }
+function listenForKeyDown(id) {
+    document.onkeydown = function(e){
+        let key = e.code
+        if (key == 'ArrowLeft' && keyIsPressed == false) {
+            keyIsPressed = true;
+            openEntry(id - 1);
+            console.log("id", id);
         }
-        console.log("keyIsPressed", keyIsPressed);
-    });
+        if (key == 'ArrowRight' && keyIsPressed == false) {
+            keyIsPressed = true;
+            openEntry(id + 1);
+            console.log("id", id);
+        }
+    };
+
+}
 
 document.addEventListener('keyup', function (e) {
     let key = e.code;
@@ -443,5 +431,5 @@ document.addEventListener('keyup', function (e) {
         console.log("keyIsPressed", keyIsPressed);
     }
 });
-}
+
 
