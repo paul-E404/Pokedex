@@ -1,8 +1,5 @@
 let currentPokémon;
 let currentPokémonList = [];
-/* let pokémonListGen1 = [];
-let pokémonListGen2 = [];
-let pokémonListGen3 = []; */
 let id;
 let keyIsPressed = false;
 
@@ -13,9 +10,6 @@ async function initGen(url, gen) {
     let pokédex = document.getElementById('pokédex');
     pokédex.innerHTML = '';
     currentPokémonList = [];
-/*     pokémonListGen1 = [];
-    pokémonListGen2 = [];
-    pokémonListGen3 = []; */
 
     let response = await fetch(url);
     let pkmnList = await response.json();
@@ -27,16 +21,6 @@ async function initGen(url, gen) {
     }
 
     enableBtn(gen);
-
-  /*   if (gen == 1) {
-        currentPokémonList = pokémonListGen1;
-    } 
-    else if (gen == 2) {
-        currentPokémonList = pokémonListGen2;
-    } 
-    else if (gen == 3) {
-        currentPokémonList = pokémonListGen3;
-    } */
 
     console.log("currentPokémonList", currentPokémonList);
 }
@@ -83,16 +67,6 @@ async function loadPokémon(id, currentPokémonURL) {
     let url = currentPokémonURL;
     let response = await fetch(url);
     currentPokémon = await response.json();
-
-/*     if (gen == 1) {
-        pokémonListGen1.push(currentPokémon);
-    }
-    else if (gen == 2) {
-        pokémonListGen2.push(currentPokémon);
-    }
-    else if (gen == 3) {
-        pokémonListGen3.push(currentPokémon);
-    } */
     
     currentPokémonList.push(currentPokémon);
 
@@ -114,8 +88,8 @@ function generateHTMLForPokédex(id) {
     return `<div onclick="openEntry(${id});" id="pokédex-element-${id}" class="pokédex-element">
                 <div id="pokédex-name-${id}" class="pokédex-name"></div>
                 <div class="pokédex-type-box">
-                    <button id="pokédex-type-btn-slot1-${id}" class="type-btn"></button>
-                    <button id="pokédex-type-btn-slot2-${id}" class="type-btn d-none"></button>
+                    <button id="pokédex-type-btn-slot1-${id}" class="type-btn type-btn-pokédex"></button>
+                    <button id="pokédex-type-btn-slot2-${id}" class="type-btn type-btn-pokédex d-none"></button>
                 </div>
                 <div id="pokédex-image-box-${id}" class="pokédex-image-box">
                 </div>

@@ -116,7 +116,7 @@ body {
 }
 
 .pokédex {
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(255, 255, 255, 0.6);
     color: white;
     border-radius: 5px;
     display: flex;
@@ -484,13 +484,13 @@ body {
 .ghost-btn {
     background: linear-gradient(rgb(130, 117, 151), rgb(102, 73, 150));
     text-shadow: 0 1px 0 rgb(144, 136, 158);
-    border: solid 2px rgb(144, 136, 158);
+    border: solid 2px rgb(205, 201, 211);
 }
 
 .steel-btn {
     background: linear-gradient(rgb(202, 202, 206), rgb(167, 167, 170));
     text-shadow: 0 1px 0 rgb(226, 226, 230);
-    border: solid 2px rgb(203, 203, 206);
+    border: solid 2px rgb(229, 229, 233);
 }
 
 .fire-btn {
@@ -545,7 +545,7 @@ body {
 .fairy-btn {
     background: linear-gradient(rgb(249, 206, 252), rgb(249, 173, 255));
     text-shadow: 0 1px 0 rgb(253, 221, 255);
-    border: solid 2px rgb(253, 221, 255);
+    border: solid 2px rgb(252, 242, 253);
 }
 
 /* TYPE BACKGROUND COLORS */
@@ -696,4 +696,102 @@ body {
 
 .fairy-layer {
     background-color: rgba(249, 173, 255, 0.3);
+}
+
+/* RESPONSIVE DESIGN */
+
+@media(max-width: 750px) {
+    #logo {
+        height: 100%;
+        top: -6%;
+    }
+    .pokédex-element {
+        margin: calc(var(--pokédex-element-margin)/2);
+        height: calc(var(--pokédex-element-height)/2);
+        min-width: calc(var(--pokédex-element-width)/2);
+    }
+    .pokédex-name {
+        font-size: 12px;
+        margin-top: 4px;
+    }
+    .pokédex-type-box button {
+        margin: 2px;
+    }
+    .type-btn-pokédex {
+        height: 12px;
+        width: 50px;
+        font-size: 10px;
+        line-height: 5px;
+        border: 1px i !important;
+        text-shadow: unset !important;
+    }
+    .pokédex-image-box img {
+        height: calc((var(--pokédex-element-height) + 30px)/2);
+        width: calc((var(--pokédex-element-width) / 1.5)/2);
+    }
+    .pokédex-image-box img:hover {
+        height: calc((var(--pokédex-element-height) + 35px)/2);
+        width: calc((var(--pokédex-element-width) / 1.4)/2);
+    }
+}
+
+@media(max-width: 600px) {
+    .gen-btn {
+        margin-right: 8px;
+    }
+}
+
+@media(max-width: 500px) {
+    #logo {
+        height: 80%;
+        top: 10%;
+    }
+    .gen-btn {
+        width: 50px;
+        font-size: 12px;
+    }
+    #gen3-icon {
+        top: -55px;
+        left: 0px;
+    }
+}
+
+@media(max-width: 400px) {
+    #logo {
+        height: 65%;
+        top: 20%;
+        left: 3%;
+    }
+    .page-content {
+        margin-top: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .header, .pokédex, .footer {
+        border-radius: unset !important;
+    }
+    #gen1-icon {
+        top: -50px;
+        left: 0px;
+    }
+    #gen3-icon {
+        left: -10px;
+    }
+    .gen-btn {
+        align-self: flex-end;
+        margin-bottom: 8px;
+    }
+}
+
+@media(max-width: 300px) {
+    #logo {
+        height: 50%;
+        top: 30%;
+    }
+    .footer img {
+        height: 90%;
+    }
+    .footer-link {
+        font-size: 14px;
+    }
 }
