@@ -202,7 +202,7 @@ function closeEntry() {
 function showPokémon(id) {
     let pokédexSingle = document.getElementById('pokédex-single');
     pokédexSingle.innerHTML = generateHTMLForSingleEntry(id);
-    correctNormalTypeFontColor(id);
+    correctTypeFontColor(id);
     fillTypeColor(id, 'pic');
     fillTypeColor(id, 'layer');
     fillTypeColor(id, 'btn-pokémon');
@@ -334,7 +334,12 @@ function generateHTMLForSingleEntry(id) {
 }
 
 
-function correctNormalTypeFontColor(id) {
+/**
+ * Corrects the font color for normal and steel types from white (regular) to dark because of light background pictures.
+ * 
+ * @param  {} id
+ */
+function correctTypeFontColor(id) {
 
     let typePrimary = currentPokémon.types[0].type['name'];
     let typeSecondary;
@@ -344,7 +349,7 @@ function correctNormalTypeFontColor(id) {
         typeSecondary = currentPokémon.types[1].type['name'];
     }
 
-    if (typePrimary == 'normal' && typeSecondary != 'flying') {
+    if ((typePrimary == 'normal' && typeSecondary != 'flying') || typePrimary == 'steel') {
             document.getElementById(`pokémon-name-${id}`).style.color = 'rgb(50, 54, 53)';
             document.getElementById(`pokémon-number-${id}`).style.color = 'rgb(50, 54, 53)';
             document.getElementById(`pokémon-number-${id}`).style.fontWeight = '500';
@@ -456,7 +461,7 @@ function renderBaseStats(id) {
 
 function renderBaseStatsBar(hpValue, attackValue, defenseValue, spAtkValue, spDefValue, speedValue) {
 
-    const maxBaseStats = [{ "maxHP": 255 }, { "maxAttack": 190 }, { "maxDefense": 230 }, { "maxSpAtk": 194 }, { "maxSpDef": 230 }, { "maxSpeed": 200 }];
+    const maxBaseStats = [{ "maxHP": 255 }, { "maxAttack": 180 }, { "maxDefense": 230 }, { "maxSpAtk": 180 }, { "maxSpDef": 230 }, { "maxSpeed": 180 }];
 
     document.getElementById('hp-bar').style.width = `calc(var(--pokémon-entry-width) * 0.6 * (${hpValue} / ${maxBaseStats[0]['maxHP']})`;
     document.getElementById('attack-bar').style.width = `calc(var(--pokémon-entry-width) * 0.6 * (${attackValue} / ${maxBaseStats[1]['maxAttack']})`;

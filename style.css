@@ -98,18 +98,21 @@ body {
 }
 
 #gen1-icon {
+    height: 64px;
     position: absolute;
     top: -4px;
     left: -28px;
 }
 
 #gen2-icon {
+    height: 48px;
     position: absolute;
     top: -47px;
     left: 0px;
 }
 
 #gen3-icon {
+    height: 64px;
     position: absolute;
     top: -36px;
     left: 40px;
@@ -750,7 +753,7 @@ body {
         top: 10%;
     }
     .gen-btn {
-        width: 50px;
+        width: 54px;
         font-size: 12px;
     }
     #gen3-icon {
