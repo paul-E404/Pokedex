@@ -24,7 +24,6 @@ body {
     height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: var(--main-font-size);
-    background-color: lightgrey;
 }
 
 .background-image {
@@ -47,11 +46,24 @@ body {
     cursor: pointer;
 }
 
-.pokédex {
+.page-content {
     margin: 7%;
+    font-size: 16px;
+}
+
+.header {
     background-color: rgba(255, 255, 255, 0.85);
     color: white;
-    font-size: 16px;
+    height: 100px;
+    margin-bottom: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pokédex {
+    background-color: rgba(255, 255, 255, 0.85);
+    color: white;
     display: flex;
     flex-wrap: wrap;
 }
@@ -86,14 +98,15 @@ body {
 
 .pokédex-type-box button {
     margin: 4px;
+    cursor: pointer;
 }
 
 .pokédex-image-box {
     position: absolute;
     right: -20px;
     top: -20px;
-    /* background-color: rgba(255, 255, 255, 0.25); */
     border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .pokédex-image-box img {
@@ -101,16 +114,29 @@ body {
     width: calc(var(--pokédex-element-width) / 1.5);
 }
 
+.footer {
+    background-color: rgba(255, 255, 255, 0.85);
+    color: white;
+    height: 30px;
+    margin-top: 2%;
+}
+
 .pokédex-single {
-    position: absolute;
-    top: 15%;
-    left: 50%;
+    position: fixed;
+    height: var(--pokémon-entry-height);
+    /* width: var(--pokémon-entry-width); */
+    z-index: 1;
+    top: 50%;
+    left: 46%;
+    margin-top: calc(var(--pokémon-entry-height)*(-1)/2);
+    margin-left: calc(var(--pokémon-entry-width)*(-1)/2);
+    /* left: 50%; */
 }
 
 .pokémon-entry {
     position: relative;
-    top: 20%;
-    left: -50%;
+    /* top: 20%; */
+    /* left: -50%; */
     height: var(--pokémon-entry-height);
     width: var(--pokémon-entry-width);
     background-color: white;
@@ -124,18 +150,16 @@ body {
 .pokémon-entry-background-picture {
     position: absolute;
     bottom: 50%;
-    width: calc(100% - 4px);        /* without border left and right */
-
+    width: calc(100% - 4px);
+    /* without border left and right */
     /* new */
     height: 50%;
     object-fit: cover;
     border-top-left-radius: var(--main-border-radius);
     border-top-right-radius: var(--main-border-radius);
-
-
-
     z-index: 4 !important;
-    left: calc(-50% + 2px);
+    left: 2px;
+    /* left: calc(-50% + 2px); */
     top: 2px;
     opacity: 0.7;
 }
@@ -210,11 +234,17 @@ body {
     left: 0;
     right: 0;
     height: 55%;
+    overflow-x: hidden;
+    overflow: hidden;
     width: 100%;
     background-color: white;
     border-radius: var(--main-border-radius);
-    overflow-x: hidden;
     z-index: 6 !important;
+}
+
+.pokémon-info-content {
+    height: 92%;
+    overflow: scroll;
 }
 
 .pokémon-info-headlines {
@@ -326,8 +356,6 @@ body {
     padding-left: 20px;
 }
 
-
-
 /* TYPE BUTTONS */
 
 .normal-btn {
@@ -340,7 +368,6 @@ body {
     background: linear-gradient(rgb(214, 102, 96), rgb(192, 48, 40));
     text-shadow: 0 1px 0 rgb(223, 123, 117);
     border: solid 2px rgb(223, 123, 117);
-
 }
 
 .flying-btn {
@@ -414,7 +441,7 @@ body {
     background: linear-gradient(rgb(248, 129, 165), rgb(248, 88, 187));
     text-shadow: 0 1px 0 rgb(253, 179, 201);
     border: solid 2px rgb(253, 179, 201);
-} 
+}
 
 .ice-btn {
     background: linear-gradient(rgb(192, 226, 226), rgb(134, 211, 211));
@@ -439,8 +466,6 @@ body {
     text-shadow: 0 1px 0 rgb(253, 221, 255);
     border: solid 2px rgb(253, 221, 255);
 }
-
-
 
 /* TYPE BACKGROUND COLORS */
 
@@ -481,7 +506,8 @@ body {
 }
 
 .fire {
-    background-color: rgb(240, 128, 48);
+   /*  background-color: rgb(240, 128, 48); */
+    background-color: rgb(243, 102, 92);
 }
 
 .water {
@@ -516,8 +542,6 @@ body {
     background-color: rgb(249, 173, 255);
 }
 
-
-
 /* TYPE LAYERS */
 
 .normal-layer {
@@ -525,15 +549,15 @@ body {
 }
 
 .fighting-layer {
-    background-color: rgba(192, 48, 40, 0.3);
+    background-color: rgba(192, 48, 40, 0.1);
 }
 
 .flying-layer {
-    background-color: rgba(168, 144, 240, 0.5);
+    background-color: rgba(168, 144, 240, 0.3);
 }
 
 .poison-layer {
-    background-color: rgba(160, 64, 160, 0.5);
+    background-color: rgba(160, 64, 160, 0.1);
 }
 
 .ground-layer {
@@ -545,7 +569,7 @@ body {
 }
 
 .bug-layer {
-    background-color: rgba(168, 184, 32, 0.5);
+    background-color: rgba(168, 184, 32, 0.2);
 }
 
 .ghost-layer {
@@ -553,7 +577,7 @@ body {
 }
 
 .steel-layer {
-    background-color: rgba(210, 210, 215, 0.5);
+    background-color: rgba(210, 210, 215, 0.1);
 }
 
 .fire-layer {
@@ -561,15 +585,15 @@ body {
 }
 
 .water-layer {
-    background-color: rgba(104, 144, 240, 0.5);
+    background-color: rgba(104, 144, 240, 0.4);
 }
 
 .grass-layer {
-    background-color: rgba(120, 200, 80, 0.5);
+    background-color: rgba(120, 200, 80, 0.2);
 }
 
 .electric-layer {
-    background-color: rgba(248, 208, 48, 0.5);
+    background-color: rgba(248, 208, 48, 0.2);
 }
 
 .psychic-layer {
@@ -577,17 +601,18 @@ body {
 }
 
 .ice-layer {
-    background-color: rgba(152, 216, 216, 0.5);
+    /* background-color: rgba(152, 216, 216, 0.1); */
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .dragon-layer {
-    background-color: rgba(85, 56, 248, 0.5);
+    background-color: rgba(85, 56, 248, 0.3);
 }
 
 .dark-layer {
-    background-color: rgba(112, 88, 72, 0.5);
+    background-color: rgba(112, 88, 72, 0.2);
 }
 
 .fairy-layer {
-    background-color: rgba(249, 173, 255, 0.5);
+    background-color: rgba(249, 173, 255, 0.3);
 }

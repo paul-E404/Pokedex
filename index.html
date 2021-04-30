@@ -15,7 +15,7 @@
     <title>API Pokédex</title>
 </head>
 
-<body onload="init();">
+<body onload="initGen1();">
 
     <div class="background-image">
     </div>
@@ -23,141 +23,26 @@
     <div onclick="closeEntry();" id="open-entry-bg" class="opened-entry-bg d-none">
     </div>
 
-    <div id="pokédex" class="pokédex">
-       <!--  <div onclick="openEntry();" class="pokédex-element">
-            <div id="pokédex-name" class="pokédex-name"></div>
-            <div class="pokédex-type-box">
-                <button id="pokédex-type-btn-slot1" class="type-btn fire-btn"></button>
-                <button id="pokédex-type-btn-slot2" class="type-btn d-none"></button>
-            </div>
-            <div id="pokédex-image-box" class="pokédex-image-box">
-            </div>
-        </div> -->
+    <div class="page-content">
+        <div class="header">
+            <button onclick="initGen1();">Gen 1</button>
+            <button onclick="initGen2();">Gen 2</button>
+            <button onclick="initGen3();">Gen 3</button>
+        </div>
+
+        <div id="pokédex" class="pokédex">
+
+        </div>
+
+        <div class="footer">
+
+        </div>
     </div>
 
     <div id="pokédex-single" class="pokédex-single d-none">
 
-    <!--     <img id="pokémon-entry-background-picture" class="pokémon-entry-background-picture" src="img/fire.png" alt="">
-        <div class="pokémon-entry">
-            <div id="pokémon-entry-background-layer" class="pokémon-entry-background-layer">
-
-            </div>
-            <div class="arrow-zone">
-                <i class="fas fa-chevron-left"></i>
-                <i onclick="closeEntry();" class="fas fa-times"></i>
-                <i class="fas fa-chevron-right"></i>
-            </div>
-            <div id="pokémon-number" class="pokémon-number">
-
-            </div>
-            <div id="pokémon-name" class="pokémon-name">
-
-            </div>
-            <div id="pokémon-type-box" class="pokémon-type-box">
-                <button id="pokémon-type-btn-slot1" class="type-btn fire-btn">Fire</button>
-                <button id="pokémon-type-btn-slot2" class="type-btn d-none">Other</button>
-            </div>
-            <div id="pokémon-image-box" class="pokémon-image-box">
-
-            </div>
-            <div class="pokémon-info">
-                <div class="pokémon-info-headlines">
-                    <div onclick="showInfoTable('about');" id="about">About</div>
-                    <div onclick="showInfoTable('base-stats');" id="base-stats" class="noHighlighting">Base Stats</div>
-                    <div onclick="showInfoTable('moves');" id="moves" class="noHighlighting">Moves</div>
-                </div>
-
-                <table id="about-table" class="about-table info-table">
-                    <tbody>
-                        <tr>
-                            <td>Height</td>
-                            <td id="pkmn-height"></td>
-                        </tr>
-                        <tr>
-                            <td>Weight</td>
-                            <td id="pkmn-weight"></td>
-                        </tr>
-                        <tr>
-                            <td>Abilities</td>
-                            <td id="pkmn-abilities"></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <table id="base-stats-table" class="base-stats-table info-table">
-                    <tbody>
-                        <tr>
-                            <td>HP</td>
-                            <td id="hp"></td>
-                            <td>
-                                <div class="base-stats-bar-container">
-                                    <div id="hp-bar" class="base-stats-bar-value"></div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Attack</td>
-                            <td id="attack"></td>
-                            <td>
-                                <div class="base-stats-bar-container">
-                                    <div id="attack-bar" class="base-stats-bar-value"></div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Defense</td>
-                            <td id="defense"></td>
-                            <td>
-                                <div class="base-stats-bar-container">
-                                    <div id="defense-bar" class="base-stats-bar-value"></div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Sp. Atk</td>
-                            <td id="sp-atk"></td>
-                            <td>
-                                <div class="base-stats-bar-container">
-                                    <div id="sp-atk-bar" class="base-stats-bar-value"></div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Sp. Def</td>
-                            <td id="sp-def"></td>
-                            <td>
-                                <div class="base-stats-bar-container">
-                                    <div id="sp-def-bar" class="base-stats-bar-value"></div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Speed</td>
-                            <td id="speed"></td>
-                            <td>
-                                <div class="base-stats-bar-container">
-                                    <div id="speed-bar" class="base-stats-bar-value"></div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <table id="moves-table" class="moves-table info-table">
-                    <thead>
-                        <tr>
-                            <td>Level</td>
-                            <td>Move</td>
-                        </tr>
-                    </thead>
-                    <tbody id="moves-table-tbody">
-
-                    </tbody>
-                </table>
-
-            </div>
-        </div> -->
     </div>
+
 
 </body>
 

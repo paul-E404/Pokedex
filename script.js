@@ -3,8 +3,49 @@ let currentPokémonList = [];
 let id;
 let keyIsPressed = false;
 
-async function init() {
-    let url = 'https://pokeapi.co/api/v2/pokemon?limit=51&offset=0';
+async function initGen1() {
+
+    let pokédex = document.getElementById('pokédex');
+    pokédex.innerHTML = '';
+    currentPokémonList = [];
+
+    let url = 'https://pokeapi.co/api/v2/pokemon?limit=151&offset=0';
+    let response = await fetch(url);
+    let pkmnList = await response.json();
+
+    for (let i = 0; i < pkmnList.results.length; i++) {
+        id = i;
+        currentPokémonURL = pkmnList.results[i].url;
+        await loadPokémon(id, currentPokémonURL);
+    }
+    console.log("currentPokémonList", currentPokémonList);
+}
+
+async function initGen2() {
+
+    let pokédex = document.getElementById('pokédex');
+    pokédex.innerHTML = '';
+    currentPokémonList = [];
+
+    let url = 'https://pokeapi.co/api/v2/pokemon?limit=100&offset=151';
+    let response = await fetch(url);
+    let pkmnList = await response.json();
+
+    for (let i = 0; i < pkmnList.results.length; i++) {
+        id = i;
+        currentPokémonURL = pkmnList.results[i].url;
+        await loadPokémon(id, currentPokémonURL);
+    }
+    console.log("currentPokémonList", currentPokémonList);
+}
+
+async function initGen3() {
+
+    let pokédex = document.getElementById('pokédex');
+    pokédex.innerHTML = '';
+    currentPokémonList = [];
+
+    let url = 'https://pokeapi.co/api/v2/pokemon?limit=135&offset=251';
     let response = await fetch(url);
     let pkmnList = await response.json();
 
@@ -155,6 +196,7 @@ function closeEntry() {
 function showPokémon(id) {
     let pokédexSingle = document.getElementById('pokédex-single');
     pokédexSingle.innerHTML = generateHTMLForSingleEntry(id);
+    correctNormalTypeFontColor(id);
     fillTypeColor(id, 'pic');
     fillTypeColor(id, 'layer');
     fillTypeColor(id, 'btn-pokémon');
@@ -192,96 +234,116 @@ function generateHTMLForSingleEntry(id) {
                         <div onclick="showInfoTable('moves');" id="moves" class="noHighlighting">Moves</div>
                     </div>
 
-                    <table id="about-table" class="about-table info-table">
-                        <tbody>
-                            <tr>
-                                <td>Height</td>
-                                <td id="pkmn-height-${id}"></td>
-                            </tr>
-                            <tr>
-                                <td>Weight</td>
-                                <td id="pkmn-weight-${id}"></td>
-                            </tr>
-                            <tr>
-                                <td>Abilities</td>
-                                <td id="pkmn-abilities-${id}"></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="pokémon-info-content">
+                        <table id="about-table" class="about-table info-table">
+                            <tbody>
+                                <tr>
+                                    <td>Height</td>
+                                    <td id="pkmn-height-${id}"></td>
+                                </tr>
+                                <tr>
+                                    <td>Weight</td>
+                                    <td id="pkmn-weight-${id}"></td>
+                                </tr>
+                                <tr>
+                                    <td>Abilities</td>
+                                    <td id="pkmn-abilities-${id}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-                    <table id="base-stats-table" class="base-stats-table info-table">
-                        <tbody>
-                            <tr>
-                                <td>HP</td>
-                                <td id="hp-${id}"></td>
-                                <td>
-                                    <div class="base-stats-bar-container">
-                                        <div id="hp-bar" class="base-stats-bar-value"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Attack</td>
-                                <td id="attack-${id}"></td>
-                                <td>
-                                    <div class="base-stats-bar-container">
-                                        <div id="attack-bar" class="base-stats-bar-value"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Defense</td>
-                                <td id="defense-${id}"></td>
-                                <td>
-                                    <div class="base-stats-bar-container">
-                                        <div id="defense-bar" class="base-stats-bar-value"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Sp. Atk</td>
-                                <td id="sp-atk-${id}"></td>
-                                <td>
-                                    <div class="base-stats-bar-container">
-                                        <div id="sp-atk-bar" class="base-stats-bar-value"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Sp. Def</td>
-                                <td id="sp-def-${id}"></td>
-                                <td>
-                                    <div class="base-stats-bar-container">
-                                        <div id="sp-def-bar" class="base-stats-bar-value"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Speed</td>
-                                <td id="speed-${id}"></td>
-                                <td>
-                                    <div class="base-stats-bar-container">
-                                        <div id="speed-bar" class="base-stats-bar-value"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                        <table id="base-stats-table" class="base-stats-table info-table">
+                            <tbody>
+                                <tr>
+                                    <td>HP</td>
+                                    <td id="hp-${id}"></td>
+                                    <td>
+                                        <div class="base-stats-bar-container">
+                                            <div id="hp-bar" class="base-stats-bar-value"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Attack</td>
+                                    <td id="attack-${id}"></td>
+                                    <td>
+                                        <div class="base-stats-bar-container">
+                                            <div id="attack-bar" class="base-stats-bar-value"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Defense</td>
+                                    <td id="defense-${id}"></td>
+                                    <td>
+                                        <div class="base-stats-bar-container">
+                                            <div id="defense-bar" class="base-stats-bar-value"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sp. Atk</td>
+                                    <td id="sp-atk-${id}"></td>
+                                    <td>
+                                        <div class="base-stats-bar-container">
+                                            <div id="sp-atk-bar" class="base-stats-bar-value"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sp. Def</td>
+                                    <td id="sp-def-${id}"></td>
+                                    <td>
+                                        <div class="base-stats-bar-container">
+                                            <div id="sp-def-bar" class="base-stats-bar-value"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Speed</td>
+                                    <td id="speed-${id}"></td>
+                                    <td>
+                                        <div class="base-stats-bar-container">
+                                            <div id="speed-bar" class="base-stats-bar-value"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    
+                        <table id="moves-table" class="moves-table info-table">
+                            <thead>
+                                <tr>
+                                    <td>Level</td>
+                                    <td>Move</td>
+                                </tr>
+                            </thead>
+                            <tbody id="moves-table-tbody">
 
-                    <table id="moves-table" class="moves-table info-table">
-                        <thead>
-                            <tr>
-                                <td>Level</td>
-                                <td>Move</td>
-                            </tr>
-                        </thead>
-                        <tbody id="moves-table-tbody">
-
-                        </tbody>
-                    </table>
-
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>`
+}
+
+
+function correctNormalTypeFontColor(id) {
+
+    let typePrimary = currentPokémon.types[0].type['name'];
+    let typeSecondary;
+
+     //if secondary type exists
+     if (secondaryTypeExists(currentPokémon)) {
+        typeSecondary = currentPokémon.types[1].type['name'];
+    }
+
+    if (typePrimary == 'normal' && typeSecondary != 'flying') {
+            document.getElementById(`pokémon-name-${id}`).style.color = 'rgb(50, 54, 53)';
+            document.getElementById(`pokémon-number-${id}`).style.color = 'rgb(50, 54, 53)';
+            document.getElementById(`pokémon-number-${id}`).style.fontWeight = '500';
+    } 
+
 }
 
 function fillTypeColorBackgroundPicture(id, typePrimary, typeSecondary) {
@@ -327,7 +389,7 @@ function renderPokémonInfo(id) {
     let pokémonImageBox = document.getElementById(`pokémon-image-box-${id}`);
 
     pokémonName.innerHTML = upperCaseFirstLetter(currentPokémonList[id].name);
-    pokémonNumber.innerHTML = '#00' + currentPokémonList[id].game_indices[6].game_index;
+    pokémonNumber.innerHTML = '#' + ("000" + currentPokémonList[id].game_indices[6].game_index).slice(-3);
     pokémonTypeBtnSlot1.innerHTML = upperCaseFirstLetter(currentPokémonList[id].types[0].type['name']);
     if (currentPokémonList[id].types.length > 1) {
         pokémonTypeBtnSlot2.classList.remove('d-none');
