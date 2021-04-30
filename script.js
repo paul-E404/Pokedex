@@ -6,8 +6,9 @@ let pokémonListGen3 = []; */
 let id;
 let keyIsPressed = false;
 
-async function initGen(url) {
+async function initGen(url, gen) {
     
+    disableBtn(gen);
 
     let pokédex = document.getElementById('pokédex');
     pokédex.innerHTML = '';
@@ -25,6 +26,8 @@ async function initGen(url) {
         await loadPokémon(id, currentPokémonURL);
     }
 
+    enableBtn(gen);
+
   /*   if (gen == 1) {
         currentPokémonList = pokémonListGen1;
     } 
@@ -38,41 +41,43 @@ async function initGen(url) {
     console.log("currentPokémonList", currentPokémonList);
 }
 
-/* async function initGen2() {
-
-    let pokédex = document.getElementById('pokédex');
-    pokédex.innerHTML = '';
-    currentPokémonList = [];
-
-    let url = 'https://pokeapi.co/api/v2/pokemon?limit=100&offset=151';
-    let response = await fetch(url);
-    let pkmnList = await response.json();
-
-    for (let i = 0; i < pkmnList.results.length; i++) {
-        id = i;
-        currentPokémonURL = pkmnList.results[i].url;
-        await loadPokémon(id, currentPokémonURL);
+function disableBtn(gen) {
+    let gen1Btn = document.getElementById('gen1-btn');
+    let gen2Btn = document.getElementById('gen2-btn');
+    let gen3Btn = document.getElementById('gen3-btn');
+    if (gen == 1) {
+        gen2Btn.disabled = true;
+        gen3Btn.disabled = true;
     }
-    console.log("currentPokémonList", currentPokémonList);
+    else if (gen == 2) {
+        gen1Btn.disabled = true;
+        gen3Btn.disabled = true;
+    }
+    else if (gen == 3) {
+        gen1Btn.disabled = true;
+        gen2Btn.disabled = true;
+    }
 }
 
-async function initGen3() {
 
-    let pokédex = document.getElementById('pokédex');
-    pokédex.innerHTML = '';
-    currentPokémonList = [];
-
-    let url = 'https://pokeapi.co/api/v2/pokemon?limit=135&offset=251';
-    let response = await fetch(url);
-    let pkmnList = await response.json();
-
-    for (let i = 0; i < pkmnList.results.length; i++) {
-        id = i;
-        currentPokémonURL = pkmnList.results[i].url;
-        await loadPokémon(id, currentPokémonURL);
+function enableBtn(gen) {
+    let gen1Btn = document.getElementById('gen1-btn');
+    let gen2Btn = document.getElementById('gen2-btn');
+    let gen3Btn = document.getElementById('gen3-btn');
+    if (gen == 1) {
+        gen2Btn.disabled = false;
+        gen3Btn.disabled = false;
     }
-    console.log("currentPokémonList", currentPokémonList);
-} */
+    else if (gen == 2) {
+        gen1Btn.disabled = false;
+        gen3Btn.disabled = false;
+    }
+    else if (gen == 3) {
+        gen1Btn.disabled = false;
+        gen2Btn.disabled = false;
+    }
+}
+
 
 async function loadPokémon(id, currentPokémonURL) {
     let url = currentPokémonURL;
