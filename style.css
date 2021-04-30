@@ -725,6 +725,9 @@ body {
         border: 1px i !important;
         text-shadow: unset !important;
     }
+    .pokédex-image-box {
+        top: -10px;
+    }
     .pokédex-image-box img {
         height: calc((var(--pokédex-element-height) + 30px)/2);
         width: calc((var(--pokédex-element-width) / 1.5)/2);
@@ -754,6 +757,22 @@ body {
         top: -55px;
         left: 0px;
     }
+    .pokédex-single {
+        top: 60%;
+    }
+    .pokémon-entry {
+        height: 80% !important;
+    }
+    .pokémon-number {
+        margin-top: 25px;
+    }
+    .pokémon-name {
+        font-size: 24px;
+        margin-bottom: unset !important;
+    }
+    .pokémon-image-box {
+        margin-top: -32px;
+    }
 }
 
 @media(max-width: 400px) {
@@ -780,6 +799,25 @@ body {
     .gen-btn {
         align-self: flex-end;
         margin-bottom: 8px;
+    }
+    .pokédex-single {
+        left: 44%;
+    }
+    .pokémon-image-box img {
+        height: calc(var(--pokémon-picture-height)/1.3);
+        margin-top: 8px;
+    }
+    :root {
+        --pokémon-entry-width: 260px;
+    }
+}
+
+@media(max-width: 350px) {
+    .pokédex-single {
+        left: 43%;
+    }
+    :root {
+        --pokémon-entry-width: 220px;
     }
 }
 
