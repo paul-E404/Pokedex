@@ -1,15 +1,21 @@
 let currentPokémon;
 let currentPokémonList = [];
+/* let pokémonListGen1 = [];
+let pokémonListGen2 = [];
+let pokémonListGen3 = []; */
 let id;
 let keyIsPressed = false;
 
-async function initGen1() {
+async function initGen(url) {
+    
 
     let pokédex = document.getElementById('pokédex');
     pokédex.innerHTML = '';
     currentPokémonList = [];
+/*     pokémonListGen1 = [];
+    pokémonListGen2 = [];
+    pokémonListGen3 = []; */
 
-    let url = 'https://pokeapi.co/api/v2/pokemon?limit=151&offset=0';
     let response = await fetch(url);
     let pkmnList = await response.json();
 
@@ -18,10 +24,21 @@ async function initGen1() {
         currentPokémonURL = pkmnList.results[i].url;
         await loadPokémon(id, currentPokémonURL);
     }
+
+  /*   if (gen == 1) {
+        currentPokémonList = pokémonListGen1;
+    } 
+    else if (gen == 2) {
+        currentPokémonList = pokémonListGen2;
+    } 
+    else if (gen == 3) {
+        currentPokémonList = pokémonListGen3;
+    } */
+
     console.log("currentPokémonList", currentPokémonList);
 }
 
-async function initGen2() {
+/* async function initGen2() {
 
     let pokédex = document.getElementById('pokédex');
     pokédex.innerHTML = '';
@@ -55,13 +72,23 @@ async function initGen3() {
         await loadPokémon(id, currentPokémonURL);
     }
     console.log("currentPokémonList", currentPokémonList);
-}
+} */
 
 async function loadPokémon(id, currentPokémonURL) {
     let url = currentPokémonURL;
     let response = await fetch(url);
     currentPokémon = await response.json();
 
+/*     if (gen == 1) {
+        pokémonListGen1.push(currentPokémon);
+    }
+    else if (gen == 2) {
+        pokémonListGen2.push(currentPokémon);
+    }
+    else if (gen == 3) {
+        pokémonListGen3.push(currentPokémon);
+    } */
+    
     currentPokémonList.push(currentPokémon);
 
     showPokédex(id);

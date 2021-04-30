@@ -33,7 +33,7 @@ body {
     width: 100%;
     background-image: url(img/background.jpg);
     background-size: cover;
-    z-index: -1;
+    z-index: -3;
 }
 
 .opened-entry-bg {
@@ -56,15 +56,59 @@ body {
     color: white;
     height: 100px;
     margin-bottom: 2%;
+    border-radius: 5px;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+}
+
+.gen-btn {
+    position: relative;
+    height: 36px;
+    width: 70px;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+/*     background: linear-gradient(rgb(255, 238, 0), rgb(255, 204, 0));
+    text-shadow: 0 1px 0 rgb(252, 243, 126);
+    border: solid 2px rgb(252, 243, 126); */
+    background: linear-gradient(rgb(108, 137, 231), rgb(39, 53, 248), rgb(0, 12, 182));
+    text-shadow: 0 1px 0 rgb(108, 137, 231);
+    border: solid 2px rgb(108, 137, 231);
+}
+
+.gen-btn:hover {
+    cursor: pointer;
+    background: linear-gradient(rgb(69, 103, 212), rgb(39, 53, 248), rgb(0, 8, 122));
+    box-shadow: 0 0 10px white;
+    text-shadow: unset;
+}
+
+#gen1-icon {
+    position: absolute;
+    top: -4px;
+    left: -28px;
+}
+
+#gen2-icon {
+    position: absolute;
+    top: -47px;
+    left: 0px;
+}
+
+#gen3-icon {
+    position: absolute;
+    top: -36px;
+    left: 40px;
 }
 
 .pokédex {
     background-color: rgba(255, 255, 255, 0.85);
     color: white;
+    border-radius: 5px;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
@@ -119,6 +163,7 @@ body {
     color: white;
     height: 30px;
     margin-top: 2%;
+    border-radius: 5px;
 }
 
 .pokédex-single {
@@ -209,7 +254,7 @@ body {
 
 .type-btn {
     height: 28px;
-    width: 70px;
+    width: 75px;
     border-radius: var(--main-border-radius);
     font-family: inherit;
     font-size: 16px;
@@ -361,7 +406,7 @@ body {
 .normal-btn {
     background: linear-gradient(rgb(212, 212, 185), rgb(168, 168, 120));
     text-shadow: 0 1px 0 rgb(204, 204, 186);
-    border: solid 2px rgb(204, 204, 186);
+    border: solid 2px rgb(230, 230, 226);
 }
 
 .fighting-btn {
@@ -446,7 +491,7 @@ body {
 .ice-btn {
     background: linear-gradient(rgb(192, 226, 226), rgb(134, 211, 211));
     text-shadow: 0 1px 0 rgb(164, 191, 245);
-    border: solid 2px rgb(187, 208, 252);
+    border: solid 2px rgb(243, 247, 255);
 }
 
 .dragon-btn {
@@ -470,7 +515,7 @@ body {
 /* TYPE BACKGROUND COLORS */
 
 .normal {
-    background-color: rgb(168, 168, 120);
+    background-color: rgb(182, 182, 165);
 }
 
 .fighting {
@@ -610,7 +655,7 @@ body {
 }
 
 .dark-layer {
-    background-color: rgba(112, 88, 72, 0.2);
+    background-color: rgba(112, 88, 72, 0.1);
 }
 
 .fairy-layer {

@@ -15,7 +15,7 @@
     <title>API Pokédex</title>
 </head>
 
-<body onload="initGen1();">
+<body onload="initGen('https://pokeapi.co/api/v2/pokemon?limit=151&offset=0');">
 
     <div class="background-image">
     </div>
@@ -25,9 +25,18 @@
 
     <div class="page-content">
         <div class="header">
-            <button onclick="initGen1();">Gen 1</button>
-            <button onclick="initGen2();">Gen 2</button>
-            <button onclick="initGen3();">Gen 3</button>
+            <button onclick="initGen('https://pokeapi.co/api/v2/pokemon?limit=151&offset=0');" class="gen-btn">
+                Gen 1
+                <img id="gen1-icon" src="img/gen1.png " alt="gen1-icon">
+            </button>
+            <button onclick="initGen('https://pokeapi.co/api/v2/pokemon?limit=100&offset=151');" class="gen-btn">
+                Gen 2
+                <img id="gen2-icon" src="img/gen2.png" alt="gen2-icon">
+            </button>
+            <button onclick="initGen('https://pokeapi.co/api/v2/pokemon?limit=135&offset=251');" class="gen-btn">
+                Gen 3
+                <img id="gen3-icon" src="img/gen3.png" alt="gen3-icon">
+            </button>
         </div>
 
         <div id="pokédex" class="pokédex">
