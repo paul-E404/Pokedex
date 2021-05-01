@@ -1,0 +1,61 @@
+.pokédex {
+    background-color: rgba(255, 255, 255, 0.6);
+    color: white;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.pokédex-element {
+    position: relative;
+    margin: var(--pokédex-element-margin);
+    height: var(--pokédex-element-height);
+    min-width: var(--pokédex-element-width);
+    border: 2px solid white;
+    box-shadow: var(--main-box-shadow);
+    border-radius: var(--main-border-radius);
+    padding-left: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    cursor: pointer;
+    /* background-color: rgba(240, 128, 48, 1); */
+}
+
+.pokédex-name {
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 12px;
+}
+
+.pokédex-type-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.pokédex-type-box button {
+    margin: 4px;
+    cursor: pointer;
+}
+
+.pokédex-image-box {
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.pokédex-image-box img {
+    height: calc(var(--pokédex-element-height) + 30px);
+    width: calc(var(--pokédex-element-width) / 1.5);
+    transition: 100ms ease-in-out;
+}
+
+.pokédex-image-box img:hover {
+    height: calc(var(--pokédex-element-height) + 35px);
+    width: calc(var(--pokédex-element-width) / 1.4);
+    transition: 100ms ease-in-out;
+}

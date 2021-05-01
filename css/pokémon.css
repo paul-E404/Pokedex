@@ -1,0 +1,223 @@
+.pokédex-single {
+    position: fixed;
+    height: var(--pokémon-entry-height);
+    /* width: var(--pokémon-entry-width); */
+    z-index: 1;
+    top: 50%;
+    left: 46%;
+    margin-top: calc(var(--pokémon-entry-height)*(-1)/2);
+    margin-left: calc(var(--pokémon-entry-width)*(-1)/2);
+    /* left: 50%; */
+}
+
+.pokémon-entry {
+    position: relative;
+    /* top: 20%; */
+    /* left: -50%; */
+    height: var(--pokémon-entry-height);
+    width: var(--pokémon-entry-width);
+    background-color: white;
+    border: 2px solid white;
+    border-radius: var(--main-border-radius);
+    padding: var(--pokémon-entry-padding);
+    display: flex;
+    flex-direction: column;
+}
+
+.pokémon-entry-background-picture {
+    position: absolute;
+    bottom: 50%;
+    width: calc(100% - 4px);
+    /* without border left and right */
+    /* new */
+    height: 50%;
+    object-fit: cover;
+    border-top-left-radius: var(--main-border-radius);
+    border-top-right-radius: var(--main-border-radius);
+    z-index: 4 !important;
+    left: 2px;
+    /* left: calc(-50% + 2px); */
+    top: 2px;
+    opacity: 0.7;
+}
+
+.pokémon-entry-background-layer {
+    position: absolute;
+    padding: 20px;
+    top: 0;
+    left: 0;
+    height: var(--pokémon-entry-height);
+    width: var(--pokémon-entry-width);
+    border-radius: var(--main-border-radius);
+    z-index: 5 !important;
+}
+
+.arrow-zone, .pokémon-number, .pokémon-name, .pokémon-type-box {
+    z-index: 6 !important;
+}
+
+.arrow-zone {
+    position: absolute;
+    width: inherit;
+    color: white;
+    font-size: 1.2em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.arrow-zone i {
+    cursor: pointer;
+}
+
+.pokémon-name {
+    height: 40px;
+    /* background-color: rgb(205, 50, 50); */
+    font-size: 28px;
+    color: white;
+    margin-bottom: 12px;
+    margin-left: 4px;
+}
+
+.pokémon-number {
+    margin-top: 50px;
+    text-align: end;
+    color: white;
+}
+.pokémon-image-box {
+    display: flex;
+    justify-content: flex-end;
+    z-index: 7 !important;
+}
+
+.pokémon-image-box img {
+    height: var(--pokémon-picture-height);
+    margin-top: -40px;
+}
+
+.pokémon-info {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 55%;
+    overflow-x: hidden;
+    overflow: hidden;
+    width: 100%;
+    background-color: white;
+    border-radius: var(--main-border-radius);
+    z-index: 6 !important;
+}
+
+.pokémon-info-content {
+    height: 92%;
+    overflow: scroll;
+}
+
+.pokémon-info-headlines {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 52px;
+    border-bottom: 2px solid rgb(244, 243, 251);
+    margin-left: 28px;
+    margin-right: 28px;
+    color: var(--font-color-tertiary);
+}
+
+#about, #base-stats, #moves {
+    padding-bottom: 12px;
+    cursor: pointer;
+}
+
+#about, #base-stats, #moves {
+    border-bottom: 2px solid rgb(112, 112, 112);
+    margin-bottom: -2px;
+    color: var(--font-color-primary);
+    font-weight: bold;
+}
+
+.noHighlighting {
+    border-bottom: unset !important;
+    margin-bottom: unset !important;
+    color: var(--font-color-tertiary) !important;
+    font-weight: unset !important;
+}
+
+.info-table {
+    position: absolute;
+    margin-left: 28px;
+    margin-right: 28px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.about-table {
+    transform: translateX(0);
+    transition: 225ms ease-in-out;
+}
+
+.base-stats-table {
+    transform: translateX(calc(var(--pokémon-entry-width) + 40px));
+    transition: 225ms ease-in-out;
+}
+
+.moves-table {
+    transform: translateX(calc(var(--pokémon-entry-width)*2 + 80px));
+    transition: 225ms ease-in-out;
+}
+
+.about-table tbody tr td:first-child {
+    color: var(--font-color-secondary);
+    width: calc(var(--pokémon-entry-width) / 2.8);
+}
+
+.about-table tbody tr td:nth-child(2) {
+    color: var(--font-color-primary);
+}
+
+.base-stats-table tbody tr td:first-child {
+    color: var(--font-color-secondary);
+    font-weight: bold;
+    width: calc(var(--pokémon-entry-width) * 0.25);
+}
+
+.base-stats-table tbody tr td:nth-child(2) {
+    color: var(--font-color-primary);
+    font-weight: bold;
+    width: calc(var(--pokémon-entry-width) * 0.1);
+}
+
+.base-stats-bar-container {
+    width: calc(var(--pokémon-entry-width) * 0.6);
+    height: 3px;
+    background-color: rgb(244, 243, 251);
+}
+
+.base-stats-bar-value {
+    height: 3px;
+    background-color: yellowgreen;
+}
+
+.moves-table thead tr td:first-child {
+    width: calc(var(--pokémon-entry-width) * 0.2);
+    color: var(--font-color-secondary);
+    font-weight: bold;
+    line-height: 32px;
+    text-align: center;
+}
+
+.moves-table thead tr td:nth-child(2) {
+    width: calc(var(--pokémon-entry-width) * 0.8);
+    color: var(--font-color-secondary);
+    font-weight: bold;
+    padding-left: 20px;
+}
+
+.moves-table tbody tr td:first-child {
+    text-align: center;
+    font-weight: bold;
+}
+
+.moves-table tbody tr td:nth-child(2) {
+    padding-left: 20px;
+}

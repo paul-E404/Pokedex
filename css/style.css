@@ -1,0 +1,159 @@
+:root {
+    --pokédex-element-height: 120px;
+    --pokédex-element-width: 220px;
+    --pokédex-element-margin: 32px;
+    --pokémon-entry-height: 700px;
+    --pokémon-entry-width: 350px;
+    --pokémon-entry-padding: 20px;
+    --main-border-radius: 20px;
+    --pokémon-picture-height: 250px;
+    --main-font-size: 16px;
+    --font-color-primary: rgb(43, 44, 44);
+    --font-color-secondary: rgb(170, 171, 172);
+    --font-color-tertiary: rgb(199, 200, 202);
+    --main-box-shadow: 0 0 10px white;
+}
+
+.d-none {
+    display: none;
+    transition: 225ms ease-in-out;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: var(--main-font-size);
+}
+
+.background-image {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    background-image: url(../img/background.jpg);
+    background-size: cover;
+    z-index: -3;
+}
+
+.opened-entry-bg {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.page-content {
+    margin-left: 7%;
+    margin-right: 7%;
+    margin-top: 4%;
+    margin-bottom: 2%;
+    font-size: 16px;
+}
+
+.header {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.85);
+    color: white;
+    height: 100px;
+    margin-bottom: 2%;
+    border-radius: 5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#logo {
+    position: absolute;
+    top: -10%;
+    left: -2%;
+    transform: rotate(-20deg);
+    height: 140%;
+}
+
+.gen-btn {
+    position: relative;
+    height: 36px;
+    width: 70px;
+    margin-right: var(--pokédex-element-margin);
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    /*     background: linear-gradient(rgb(255, 238, 0), rgb(255, 204, 0));
+    text-shadow: 0 1px 0 rgb(252, 243, 126);
+    border: solid 2px rgb(252, 243, 126); */
+    background: linear-gradient(rgb(108, 137, 231), rgb(78, 89, 240), rgb(57, 68, 218));
+    text-shadow: 0 1px 0 rgb(108, 137, 231);
+    border: solid 3px rgb(108, 137, 231);
+}
+
+.gen-btn:hover {
+    cursor: pointer;
+    background: linear-gradient(rgb(69, 103, 212), rgb(80, 91, 247), rgb(63, 74, 221));
+    box-shadow: 0 0 10px white;
+}
+
+#gen1-icon {
+    height: 64px;
+    position: absolute;
+    top: -4px;
+    left: -28px;
+}
+
+#gen2-icon {
+    height: 48px;
+    position: absolute;
+    top: -47px;
+    left: 0px;
+}
+
+#gen3-icon {
+    height: 64px;
+    position: absolute;
+    top: -36px;
+    left: 40px;
+}
+
+.footer {
+    background-color: rgba(255, 255, 255, 0.85);
+    color: white;
+    height: 30px;
+    margin-top: 2%;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-link {
+    text-decoration: none;
+    color: rgb(57, 68, 218);
+    font-weight: 500;
+    margin: 12px;
+    transition: 225ms ease-in-out;
+}
+
+.footer-link:hover {
+    color: rgb(17, 28, 179);
+    margin: 32px;
+    transition: 225ms ease-in-out;
+}
+
+.type-btn {
+    height: 28px;
+    width: 75px;
+    border-radius: var(--main-border-radius);
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 22px;
+    color: white;
+}
+
+
+
+
+
