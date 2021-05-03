@@ -1,13 +1,22 @@
+/**
+ * Shows all pokédex entries for a special generation.
+ * 
+ * @param  {number} id - Current pokémon id.
+ */
 function showPokédex(id) {
     let pokédex = document.getElementById('pokédex');
     pokédex.innerHTML += generateHTMLForPokédex(id);
     fillTypeColor(id, 'bg');
     fillTypeColor(id, 'btn-pokédex');
-    /*   fillTypeBackgroundColor(id);
-      fillTypeButtonColor(id); */
     renderPokédexInfo(id);
 }
 
+/**
+ * Generates the html code for showing the pokédex entries.
+ * 
+ * @param  {number} id - Current pokémon id.
+ * @returns {HTMLDivElement}
+ */
 function generateHTMLForPokédex(id) {
     return `<div onclick="openEntry(${id});" id="pokédex-element-${id}" class="pokédex-element">
                 <div id="pokédex-name-${id}" class="pokédex-name"></div>
@@ -20,6 +29,11 @@ function generateHTMLForPokédex(id) {
             </div>`;
 }
 
+/**
+ * Injects API data into the pokédex entries.
+ * 
+ * @param  {number} id - Current pokémon id.
+ */
 function renderPokédexInfo(id) {
 
     let pokédexName = document.getElementById(`pokédex-name-${id}`);
@@ -37,30 +51,36 @@ function renderPokédexInfo(id) {
 
 }
 
+/**
+ * Opens a window with detailed information about a special pokémon.
+ * 
+ * @param  {number} id - Current pokémon id.
+ */
 function openEntry(id) {
-
-    console.log("id", id);
 
     //switch from first pokémon entry to last one by clicking left arrow
     if (id < 0) {
         id = currentPokémonList.length - 1;
     }
 
+    //switch from last pokémon entry to first one by clicking right arrow
     if (id > currentPokémonList.length - 1) {
         id = 0;
     }
 
     currentPokémon = currentPokémonList[id];
-
     listenForKeyDown(id);
-
     showPokémon(id);
+
     let pokédexSingle = document.getElementById('pokédex-single');
     let openedEntryBg = document.getElementById('open-entry-bg');
     pokédexSingle.classList.remove('d-none');
     openedEntryBg.classList.remove('d-none');
 }
 
+/**
+ * Closes the window with datailes information about a special pokémon.
+ */
 function closeEntry() {
     let pokédexSingle = document.getElementById('pokédex-single');
     let openedEntryBg = document.getElementById('open-entry-bg');

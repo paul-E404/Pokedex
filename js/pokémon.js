@@ -1,3 +1,8 @@
+/**
+ * Shows datailed information about a special pokémon in an extra window.
+ * 
+ * @param  {number} id - Current pokémon id.
+ */
 function showPokémon(id) {
     let pokédexSingle = document.getElementById('pokédex-single');
     pokédexSingle.innerHTML = generateHTMLForSingleEntry(id);
@@ -8,6 +13,12 @@ function showPokémon(id) {
     renderPokémonInfo(id);
 }
 
+/**
+ * Generates the html code for the single pokémon entry.
+ * 
+ *  @param  {number} id - Current pokémon id.
+ *  @returns {HTMLDivElement}
+ */
 function generateHTMLForSingleEntry(id) {
     return `<img id="pokémon-entry-background-picture-${id}" class="pokémon-entry-background-picture" src="" alt="">
             <div class="pokémon-entry">
@@ -132,9 +143,12 @@ function generateHTMLForSingleEntry(id) {
             </div>`
 }
 
+/**
+ * Injects API data into the single pokémon entry.
+ * 
+ * @param  {number} id - Current pokémon id.
+ */
 function renderPokémonInfo(id) {
-
-    console.log("renderPokémonInfo() wird aufgerufen!");
 
     let pokémonName = document.getElementById(`pokémon-name-${id}`);
     let pokémonNumber = document.getElementById(`pokémon-number-${id}`);
@@ -143,7 +157,7 @@ function renderPokémonInfo(id) {
     let pokémonImageBox = document.getElementById(`pokémon-image-box-${id}`);
 
     pokémonName.innerHTML = upperCaseFirstLetter(currentPokémonList[id].name);
-    pokémonNumber.innerHTML = '#' + ("000" + currentPokémonList[id].game_indices[6].game_index).slice(-3);
+    pokémonNumber.innerHTML = showPokémonNumber(id);
     pokémonTypeBtnSlot1.innerHTML = upperCaseFirstLetter(currentPokémonList[id].types[0].type['name']);
     if (currentPokémonList[id].types.length > 1) {
         pokémonTypeBtnSlot2.classList.remove('d-none');
@@ -157,7 +171,21 @@ function renderPokémonInfo(id) {
 
 }
 
+/**
+ * Shows the correct pokémon number depending on the number of digits.
+ * 
+ * @param  {number} id - Current pokémon id.
+ * @returns {string}
+ */
+function showPokémonNumber(id) {
+    return '#' + ("000" + currentPokémonList[id].game_indices[6].game_index).slice(-3);
+}
 
+/**
+ * Injects API data into the single pokémon entry category "about" (general information).
+ * 
+ * @param  {number} id - Current pokémon id.
+ */
 function renderAbout(id) {
 
     let pkmnHeight = document.getElementById(`pkmn-height-${id}`);
@@ -175,7 +203,11 @@ function renderAbout(id) {
 
 }
 
-
+/**
+ * Injects API data into the single pokémon entry category "base stats" (base stats).
+ * 
+ * @param  {number} id - Current pokémon id.
+ */
 function renderBaseStats(id) {
 
     let hp = document.getElementById(`hp-${id}`);
@@ -202,6 +234,16 @@ function renderBaseStats(id) {
     renderBaseStatsBar(hpValue, attackValue, defenseValue, spAtkValue, spDefValue, speedValue);
 }
 
+/**
+ * Creates a progress bar for each base stat depending on the highest base stats a pokémon from generation 1 to 3 can have.
+ * 
+ * @param  {number} hpValue - Base stat hp from API data.
+ * @param  {number} attackValue - Base stat attack from API data.
+ * @param  {number} defenseValue - Base stat defense from API data.
+ * @param  {number} spAtkValue - Base stat special attack from API data.
+ * @param  {number} spDefValue - Base stat special defense from API data.
+ * @param  {number} speedValue - Base stat speed from API data.
+ */
 function renderBaseStatsBar(hpValue, attackValue, defenseValue, spAtkValue, spDefValue, speedValue) {
 
     const maxBaseStats = [{ "maxHP": 255 }, { "maxAttack": 180 }, { "maxDefense": 230 }, { "maxSpAtk": 180 }, { "maxSpDef": 230 }, { "maxSpeed": 180 }];
@@ -215,6 +257,11 @@ function renderBaseStatsBar(hpValue, attackValue, defenseValue, spAtkValue, spDe
 
 }
 
+/**
+ * Fetches the API data regarding moves learned by level up and saves them into a JSON array.
+ * 
+ * @param  {number} id - Current pokémon id.
+ */
 function renderMoves(id) {
 
     //JSON-Array with all levels and moves
@@ -237,16 +284,33 @@ function renderMoves(id) {
     showMoves(levelAndMovesArray);
 }
 
-
+/**
+ * Fetches only the moves which are learned by level up.
+ * 
+ * @param  {object} moveInfo - JSON array with all information about a special move.
+ * @param  {number} j - Index of the current version of a special move.
+ * @returns {boolen}
+ */
 function moveLearnedByLevelUp(moveInfo, j) {
     return moveInfo[j].move_learn_method['name'] == 'level-up';
 }
 
-
+/**
+ * Fetches only the moves which are learned in the third generation (ruby and sapphire).
+ * 
+ * @param  {object} moveInfo - JSON array with all information about a special move.
+ * @param  {number} j - Index of the current version of a special move.
+ * @returns {boolen}
+ */
 function moveVersionRubySapphire(moveInfo, j) {
     return moveInfo[j].version_group['name'] == 'ruby-sapphire';
 }
 
+/**
+ * Injects the filtered API data into the single pokémon entry category "moves".
+ * 
+ * @param  {object} levelAndMovesArray - JSON array with filtered level and move information about a special pokémon.
+ */
 function showMoves(levelAndMovesArray) {
     let movesTableTbody = document.getElementById('moves-table-tbody');
     for (let i = 0; i < levelAndMovesArray.length; i++) {
@@ -255,7 +319,12 @@ function showMoves(levelAndMovesArray) {
     }
 }
 
-
+/**
+ * Generates html code for showing level and move information.
+ * 
+ * @param  {object} levelAndMove - JSON with level and name of a special move.
+ * @returns {HTMLDivElement}
+ */
 function generateHTMLForMovesTable(levelAndMove) {
     return ` <tr>
                 <td>${levelAndMove['level']}</td>
@@ -263,40 +332,59 @@ function generateHTMLForMovesTable(levelAndMove) {
              </tr>`;
 }
 
-
+/**
+ * Slides in current information within a single pokémon entry.
+ * 
+ * @param  {string} info - Category of information (about, base stats or moves).
+ */
 function showInfoTable(info) {
-    removeHighlighting(info);
+
+    let aboutTable = document.getElementById('about-table');
+    let baseStatsTable = document.getElementById('base-stats-table');
+    let movesTable = document.getElementById('moves-table');
+
+    toggleHighlighting(info);
     if (info == 'about') {
-        document.getElementById('about-table').style.transform = 'translateX(0)';
-        document.getElementById('base-stats-table').style.transform = 'translateX(calc(var(--pokémon-entry-width) + 40px))';
-        document.getElementById('moves-table').style.transform = 'translateX(calc(var(--pokémon-entry-width)*2 + 80px))';
+        aboutTable.style.transform = 'translateX(0)';
+        baseStatsTable.style.transform = 'translateX(calc(var(--pokémon-entry-width) + 40px))';
+        movesTable.style.transform = 'translateX(calc(var(--pokémon-entry-width)*2 + 80px))';
     }
     else if (info == 'base-stats') {
-        document.getElementById('about-table').style.transform = 'translateX(calc(var(--pokémon-entry-width) * (-1) - 40px))';
-        document.getElementById('base-stats-table').style.transform = 'translateX(0)';
-        document.getElementById('moves-table').style.transform = 'translateX(calc(var(--pokémon-entry-width) + 40px))';
+        aboutTable.style.transform = 'translateX(calc(var(--pokémon-entry-width) * (-1) - 40px))';
+        baseStatsTable.style.transform = 'translateX(0)';
+        movesTable.style.transform = 'translateX(calc(var(--pokémon-entry-width) + 40px))';
     }
     else if (info == 'moves') {
-        document.getElementById('about-table').style.transform = 'translateX(calc(var(--pokémon-entry-width) * (-2) - 80px))';
-        document.getElementById('base-stats-table').style.transform = 'translateX(calc(var(--pokémon-entry-width) * (-1) - 40px))';
-        document.getElementById('moves-table').style.transform = 'translateX(0)';
+        aboutTable.style.transform = 'translateX(calc(var(--pokémon-entry-width) * (-2) - 80px))';
+        baseStatsTable.style.transform = 'translateX(calc(var(--pokémon-entry-width) * (-1) - 40px))';
+        movesTable.style.transform = 'translateX(0)';
     }
 }
 
-function removeHighlighting(info) {
+/**
+ * Highlights the headline the user has clicked on.
+ * 
+ * @param  {string} info - Category of information (about, base stats or moves).
+ */
+function toggleHighlighting(info) {
+
+    let aboutHeadline = document.getElementById('about');
+    let baseStatsHeadline = document.getElementById('base-stats');
+    let movesHeadline = document.getElementById('moves');
+
     if (info == 'about') {
-        document.getElementById('about').classList.remove('noHighlighting');
-        document.getElementById('base-stats').classList.add('noHighlighting');
-        document.getElementById('moves').classList.add('noHighlighting');
+        aboutHeadline.classList.remove('noHighlighting');
+        baseStatsHeadline.classList.add('noHighlighting');
+        movesHeadline.classList.add('noHighlighting');
     }
     else if (info == 'base-stats') {
-        document.getElementById('about').classList.add('noHighlighting');
-        document.getElementById('base-stats').classList.remove('noHighlighting');
-        document.getElementById('moves').classList.add('noHighlighting');
+        aboutHeadline.classList.add('noHighlighting');
+        baseStatsHeadline.classList.remove('noHighlighting');
+        movesHeadline.classList.add('noHighlighting');
     }
     else if (info == 'moves') {
-        document.getElementById('about').classList.add('noHighlighting');
-        document.getElementById('base-stats').classList.add('noHighlighting');
-        document.getElementById('moves').classList.remove('noHighlighting');
+        aboutHeadline.classList.add('noHighlighting');
+        baseStatsHeadline.classList.add('noHighlighting');
+        movesHeadline.classList.remove('noHighlighting');
     }
 }

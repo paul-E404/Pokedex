@@ -77,6 +77,7 @@ async function loadPokémon(id, currentPokémonURL) {
  * Converts the first letter to a capital letter.
  * 
  * @param  {string} string - String to be converted.
+ * @returns {string}
  */
 function upperCaseFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -86,6 +87,7 @@ function upperCaseFirstLetter(string) {
  * Sorts a JSON array by keys being numbers.
  * 
  * @param  {object} JSONArrayOfNumbers - JSON array with keys being numbers.
+ * @returns {number}
  */
 function compareNumbers(JSONArrayOfNumbers) {
     JSONArrayOfNumbers.sort(function (a, b) {
@@ -122,11 +124,9 @@ function listenForKeyDown(id) {
  */
 document.addEventListener('keyup', function (e) {
     let key = e.code;
-    if (keyIsPressed == true) {
+    if (keyIsPressed) {
         if (key == 'ArrowLeft' || key == 'ArrowRight') {
             keyIsPressed = false;
         }
     }
 });
-
-
