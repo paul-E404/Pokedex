@@ -83,18 +83,21 @@ body {
     font-family: inherit;
     font-size: 16px;
     color: rgb(255, 255, 255);
-    /*     background: linear-gradient(rgb(255, 238, 0), rgb(255, 204, 0));
-    text-shadow: 0 1px 0 rgb(252, 243, 126);
-    border: solid 2px rgb(252, 243, 126); */
+    
+ /*    background: linear-gradient(rgb(223, 220, 220), rgb(155, 155, 155), rgb(95, 95, 95));
+    text-shadow: 0 1px 0 rgb(223, 220, 220);
+    border: solid 3px rgb(194, 193, 193); */
+
+    cursor: pointer;
+
     background: linear-gradient(rgb(108, 137, 231), rgb(78, 89, 240), rgb(57, 68, 218));
     text-shadow: 0 1px 0 rgb(108, 137, 231);
     border: solid 3px rgb(108, 137, 231);
 }
 
 .gen-btn:hover {
-    cursor: pointer;
-    background: linear-gradient(rgb(69, 103, 212), rgb(80, 91, 247), rgb(63, 74, 221));
-    box-shadow: 0 0 10px white;
+    background: linear-gradient(rgb(69, 103, 212), rgb(80, 91, 247), rgb(63, 74, 221)) !important;
+    box-shadow: 0 0 10px white !important;
 }
 
 #gen1-icon {

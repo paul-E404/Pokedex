@@ -109,8 +109,10 @@
 }
 
 .pokémon-info-content {
-    height: 92%;
-    overflow: scroll;
+    position: relative;
+    height: 75%;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .pokémon-info-headlines {
@@ -143,7 +145,7 @@
 }
 
 .info-table {
-    position: absolute;
+    /* position: absolute; */
     margin-left: 28px;
     margin-right: 28px;
     margin-top: 20px;
@@ -157,6 +159,9 @@
 }
 
 .base-stats-table {
+    position: absolute;
+    top: 0;
+
     transform: translateX(calc(var(--pokémon-entry-width) + 40px));
     transition: 225ms ease-in-out;
 }
@@ -164,6 +169,10 @@
 .moves-table {
     transform: translateX(calc(var(--pokémon-entry-width)*2 + 80px));
     transition: 225ms ease-in-out;
+
+    /* NEU */
+    position: absolute;
+    top: 0;
 }
 
 .about-table tbody tr td:first-child {

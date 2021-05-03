@@ -32,7 +32,7 @@ async function initGen(url, gen) {
 }
 
 /**
- * Makes generation buttons unclickable.
+ * Makes generation buttons funcionally and visually unclickable.
  * Ensures that no other generation can be chosen before one generation has finished loading.
  * This is important for the pokémon being shown in the correct order.
  */
@@ -40,9 +40,17 @@ function disableBtn() {
     let gen1Btn = document.getElementById('gen1-btn');
     let gen2Btn = document.getElementById('gen2-btn');
     let gen3Btn = document.getElementById('gen3-btn');
-    gen1Btn.disabled = true;
-    gen2Btn.disabled = true;
-    gen3Btn.disabled = true;
+
+    let genBtnArray = [gen1Btn, gen2Btn, gen3Btn];
+
+    for (let i = 0; i < genBtnArray.length; i++) {
+       genBtnArray[i].disabled = true;
+       genBtnArray[i].style.cursor = 'wait';
+       genBtnArray[i].style.background = 'linear-gradient(rgb(223, 220, 220), rgb(155, 155, 155), rgb(95, 95, 95))';
+       genBtnArray[i].style.textShadow = '0 1px 0 rgb(223, 220, 220)';
+       genBtnArray[i].style.border = 'solid 3px rgb(194, 193, 193)';
+        
+    }
 }
 
 /**
@@ -52,9 +60,17 @@ function enableBtn() {
     let gen1Btn = document.getElementById('gen1-btn');
     let gen2Btn = document.getElementById('gen2-btn');
     let gen3Btn = document.getElementById('gen3-btn');
-    gen1Btn.disabled = false;
-    gen2Btn.disabled = false;
-    gen3Btn.disabled = false;
+    
+    let genBtnArray = [gen1Btn, gen2Btn, gen3Btn];
+
+    for (let i = 0; i < genBtnArray.length; i++) {
+       genBtnArray[i].disabled = false;
+       genBtnArray[i].style.cursor = 'pointer';
+       genBtnArray[i].style.background = 'linear-gradient(rgb(108, 137, 231), rgb(78, 89, 240), rgb(57, 68, 218))';
+       genBtnArray[i].style.textShadow = '0 1px 0 rgb(108, 137, 231)';
+       genBtnArray[i].style.border = 'solid 3px rgb(108, 137, 231)';
+        
+    }
 }
 
 /**
