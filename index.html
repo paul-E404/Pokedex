@@ -6,9 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Embed Font Awesome -->
-    <script src="https://kit.fontawesome.com/c8b4666b1b.js" crossorigin="anonymous"></script>
-
     <title>API Pokédex</title>
     
     <link rel="stylesheet" href="css/style.css">
@@ -17,10 +14,17 @@
     <link rel="stylesheet" href="css/type_colors.css">
     <link rel="stylesheet" href="css/responsive.css">
 
+    <!-- Embed Font Awesome -->
+    <script src="https://kit.fontawesome.com/c8b4666b1b.js" crossorigin="anonymous"></script>
+
     <script src="js/script.js"></script>
     <script src="js/pokédex.js"></script>
     <script src="js/pokémon.js"></script>
     <script src="js/type_colors.js"></script>
+
+    <!-- Embed Favicon -->
+    <link rel="icon" type="image/png" href="img/pokeball.png"/>
+
 </head>
 
 <body onload="initGen('https://pokeapi.co/api/v2/pokemon?limit=151&offset=0', 1);">
@@ -54,7 +58,7 @@
 
         <div class="footer">
             <img src="img/pokeball.png" alt="pokéball-icon">
-            <a class="footer-link" href="Legal Notice">Legal Notice</a>
+            <a class="footer-link" href="pages/legal_notice.html" target="_blank">Legal Notice</a>
             <img src="img/pokeball.png" alt="pokéball-icon">
         </div>
     </div>

@@ -73,6 +73,9 @@
     .pokémon-image-box {
         margin-top: -32px;
     }
+    .footer img {
+        height: 90%;
+    }
 }
 
 @media(max-width: 400px) {
