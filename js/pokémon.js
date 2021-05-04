@@ -26,9 +26,9 @@ function generateHTMLForSingleEntry(id) {
 
                 </div>
                 <div class="arrow-zone">
-                    <i onclick="openEntry(${(id - 1) % currentPokémonList.length});" class="fas fa-chevron-left"></i>
+                    <i onclick="openEntry(${(id - 1) % fullPokémonList.length});" class="fas fa-chevron-left"></i>
                     <i onclick="closeEntry();" class="fas fa-times"></i>
-                    <i onclick="openEntry(${(id + 1) % currentPokémonList.length});" class="fas fa-chevron-right"></i>
+                    <i onclick="openEntry(${(id + 1) % fullPokémonList.length});" class="fas fa-chevron-right"></i>
                 </div>
                 <div id="pokémon-number-${id}" class="pokémon-number">
 
@@ -156,14 +156,14 @@ function renderPokémonInfo(id) {
     let pokémonTypeBtnSlot2 = document.getElementById(`pokémon-type-btn-slot2-${id}`);
     let pokémonImageBox = document.getElementById(`pokémon-image-box-${id}`);
 
-    pokémonName.innerHTML = upperCaseFirstLetter(currentPokémonList[id].name);
+    pokémonName.innerHTML = upperCaseFirstLetter(fullPokémonList[id].name);
     pokémonNumber.innerHTML = showPokémonNumber(id);
-    pokémonTypeBtnSlot1.innerHTML = upperCaseFirstLetter(currentPokémonList[id].types[0].type['name']);
-    if (currentPokémonList[id].types.length > 1) {
+    pokémonTypeBtnSlot1.innerHTML = upperCaseFirstLetter(fullPokémonList[id].types[0].type['name']);
+    if (fullPokémonList[id].types.length > 1) {
         pokémonTypeBtnSlot2.classList.remove('d-none');
-        pokémonTypeBtnSlot2.innerHTML = upperCaseFirstLetter(currentPokémonList[id].types[1].type['name']);
+        pokémonTypeBtnSlot2.innerHTML = upperCaseFirstLetter(fullPokémonList[id].types[1].type['name']);
     }
-    pokémonImageBox.innerHTML = `<img src="${currentPokémonList[id].sprites.other['official-artwork'].front_default}" alt="picture-${currentPokémonList[id].name}">`;
+    pokémonImageBox.innerHTML = `<img src="${fullPokémonList[id].sprites.other['official-artwork'].front_default}" alt="picture-${fullPokémonList[id].name}">`;
 
     renderAbout(id);
     renderBaseStats(id);
@@ -178,7 +178,7 @@ function renderPokémonInfo(id) {
  * @returns {string}
  */
 function showPokémonNumber(id) {
-    return '#' + ("000" + currentPokémonList[id].game_indices[6].game_index).slice(-3);
+    return '#' + ("000" + fullPokémonList[id].game_indices[6].game_index).slice(-3);
 }
 
 /**
@@ -193,10 +193,10 @@ function renderAbout(id) {
     let pkmnAbilities = document.getElementById(`pkmn-abilities-${id}`);
     let abilitiesArr = [];
 
-    pkmnHeight.innerHTML = currentPokémonList[id].height / 10 + " m";
-    pkmnWeight.innerHTML = currentPokémonList[id].weight / 10 + " kg";
-    for (let i = 0; i < currentPokémonList[id].abilities.length; i++) {
-        let ability = currentPokémonList[id].abilities[i].ability['name'];
+    pkmnHeight.innerHTML = fullPokémonList[id].height / 10 + " m";
+    pkmnWeight.innerHTML = fullPokémonList[id].weight / 10 + " kg";
+    for (let i = 0; i < fullPokémonList[id].abilities.length; i++) {
+        let ability = fullPokémonList[id].abilities[i].ability['name'];
         abilitiesArr.push(ability);
     }
     pkmnAbilities.innerHTML = abilitiesArr.join(", ");
@@ -217,12 +217,12 @@ function renderBaseStats(id) {
     let spDef = document.getElementById(`sp-def-${id}`);
     let speed = document.getElementById(`speed-${id}`);
 
-    let hpValue = currentPokémonList[id].stats[0].base_stat;
-    let attackValue = currentPokémonList[id].stats[1].base_stat;
-    let defenseValue = currentPokémonList[id].stats[2].base_stat;
-    let spAtkValue = currentPokémonList[id].stats[3].base_stat;
-    let spDefValue = currentPokémonList[id].stats[4].base_stat;
-    let speedValue = currentPokémonList[id].stats[5].base_stat;
+    let hpValue = fullPokémonList[id].stats[0].base_stat;
+    let attackValue = fullPokémonList[id].stats[1].base_stat;
+    let defenseValue = fullPokémonList[id].stats[2].base_stat;
+    let spAtkValue = fullPokémonList[id].stats[3].base_stat;
+    let spDefValue = fullPokémonList[id].stats[4].base_stat;
+    let speedValue = fullPokémonList[id].stats[5].base_stat;
 
     hp.innerHTML = hpValue;
     attack.innerHTML = attackValue;
@@ -267,13 +267,13 @@ function renderMoves(id) {
     //JSON-Array with all levels and moves
     levelAndMovesArray = [];
 
-    for (let i = 0; i < currentPokémonList[id].moves.length; i++) {
-        for (let j = 0; j < currentPokémonList[id].moves[i].version_group_details.length; j++) {
-            let moveInfo = currentPokémonList[id].moves[i].version_group_details;
+    for (let i = 0; i < fullPokémonList[id].moves.length; i++) {
+        for (let j = 0; j < fullPokémonList[id].moves[i].version_group_details.length; j++) {
+            let moveInfo = fullPokémonList[id].moves[i].version_group_details;
             if (moveLearnedByLevelUp(moveInfo, j)) {
                 if (moveVersionRubySapphire(moveInfo, j)) {
                     let level = moveInfo[j].level_learned_at;
-                    let move = currentPokémonList[id].moves[i].move['name'];
+                    let move = fullPokémonList[id].moves[i].move['name'];
                     let levelAndMoveJSON = { "level": level, "move": move };
                     levelAndMovesArray.push(levelAndMoveJSON);
                 }

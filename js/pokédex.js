@@ -60,15 +60,15 @@ function openEntry(id) {
 
     //switch from first pokémon entry to last one by clicking left arrow
     if (id < 0) {
-        id = currentPokémonList.length - 1;
+        id = fullPokémonList.length - 1;
     }
 
     //switch from last pokémon entry to first one by clicking right arrow
-    if (id > currentPokémonList.length - 1) {
+    if (id > fullPokémonList.length - 1) {
         id = 0;
     }
 
-    currentPokémon = currentPokémonList[id];
+    currentPokémon = fullPokémonList[id];
     listenForKeyDown(id);
     showPokémon(id);
 

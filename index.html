@@ -27,7 +27,7 @@
 
 </head>
 
-<body onload="initGen('https://pokeapi.co/api/v2/pokemon?limit=151&offset=0', 1);">
+<body onload="checkForScrollTop(1);initGen('https://pokeapi.co/api/v2/pokemon?limit=25&offset=0', 1);">
 
     <div class="background-image">
     </div>
@@ -38,15 +38,15 @@
     <div class="page-content">
         <div class="header">
             <img id="logo" src="img/pokedex.png" alt="logo">
-            <button id="gen1-btn" onclick="initGen('https://pokeapi.co/api/v2/pokemon?limit=151&offset=0', 1);" class="gen-btn">
+            <button id="gen1-btn" onclick="checkForScrollTop(1);initGen('https://pokeapi.co/api/v2/pokemon?limit=25&offset=0', 1);" class="gen-btn">
                 Gen&nbsp;1
                 <img id="gen1-icon" class="gen-icon" src="img/gen1.png " alt="gen1-icon">
             </button>
-            <button id="gen2-btn" onclick="initGen('https://pokeapi.co/api/v2/pokemon?limit=100&offset=151', 2);" class="gen-btn">
+            <button id="gen2-btn" onclick="checkForScrollTop(2);initGen('https://pokeapi.co/api/v2/pokemon?limit=25&offset=151', 2);" class="gen-btn">
                 Gen&nbsp;2
                 <img id="gen2-icon" class="gen-icon" src="img/gen2.png" alt="gen2-icon">
             </button>
-            <button id="gen3-btn" onclick="initGen('https://pokeapi.co/api/v2/pokemon?limit=135&offset=251', 3);" class="gen-btn">
+            <button id="gen3-btn" onclick="checkForScrollTop(3);initGen('https://pokeapi.co/api/v2/pokemon?limit=25&offset=251', 3);" class="gen-btn">
                 Gen&nbsp;3
                 <img id="gen3-icon" class="gen-icon" src="img/gen3.png" alt="gen3-icon">
             </button>
