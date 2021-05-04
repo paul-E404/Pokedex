@@ -25,19 +25,22 @@ async function checkForScrollTop(gen) {
     setInterval(async function () {
         maxBodyHeight = document.documentElement.offsetHeight - window.innerHeight;
         currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-        endOfThePage = currentScrollPosition == maxBodyHeight;
+        /* endOfThePage = currentScrollPosition == maxBodyHeight; */
+        endOfThePage = maxBodyHeight - currentScrollPosition < 50;
 
         if (currentGen == 1) {
             await splitGen1();
+            currentLoading = false;
         }
         else if (currentGen == 2) {
             await splitGen2();
+            currentLoading = false;
         }
         else if (currentGen == 3) {
             await splitGen3();
+            currentLoading = false;
         }
-        currentLoading = false;
-
+        
     }, 500)
 }
 
@@ -123,7 +126,6 @@ function checkForLoadingNextPart(i) {
     return endOfThePage && currentLoading == false && id == (24 + i * LIMIT);
 }
   
-
 /**
  * Loads general pokémon generation API data.
  * 
@@ -131,6 +133,7 @@ function checkForLoadingNextPart(i) {
  * @param  {number} gen - Number of generation.
  */
 async function initGen(url, gen) {
+    
     console.log("INIT GEN AUSGEFÜHRT!");
     disableBtn(gen);
 
