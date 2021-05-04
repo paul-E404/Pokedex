@@ -1,6 +1,9 @@
 /* RESPONSIVE DESIGN */
 
 @media(max-width: 750px) {
+    .background-image {
+        background-position-x: center;
+    }
     #logo {
         height: 100%;
         top: -6%;
@@ -39,12 +42,18 @@
 }
 
 @media(max-width: 600px) {
+    .background-image {
+        background-position-x: 40%;
+    }
     .gen-btn {
         margin-right: 8px;
     }
 }
 
 @media(max-width: 500px) {
+    .background-image {
+        background-position-x: 35%;
+    }
     #logo {
         height: 80%;
         top: 10%;

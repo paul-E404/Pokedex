@@ -134,7 +134,6 @@ function checkForLoadingNextPart(i) {
  */
 async function initGen(url, gen) {
     
-    console.log("INIT GEN AUSGEFÜHRT!");
     disableBtn(gen);
 
     currentPokémonList = [];

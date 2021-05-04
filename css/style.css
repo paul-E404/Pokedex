@@ -83,10 +83,6 @@ body {
     font-family: inherit;
     font-size: 16px;
     color: rgb(255, 255, 255);
-    
- /*    background: linear-gradient(rgb(223, 220, 220), rgb(155, 155, 155), rgb(95, 95, 95));
-    text-shadow: 0 1px 0 rgb(223, 220, 220);
-    border: solid 3px rgb(194, 193, 193); */
 
     cursor: pointer;
 
