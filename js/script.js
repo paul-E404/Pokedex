@@ -1,124 +1,44 @@
 let currentPokémon;
-let currentPokémonList = []; //for pageination
+let currentPokémonList = []; //for pagination
 let fullPokémonList = [];
 let id = -1;
 let keyIsPressed = false;
 
-let maxBodyHeight;          //for pageination
-let currentLoading = false; //for pageination
-let currentGen = 1;         //for pageination
+let maxBodyHeight;          //for pagination
+let currentScrollPosition;  //for pagination
+let endOfThePage;           //for pagination
+let currentLoading = false; //for pagination
+let currentGen = 1;         //for pagination
+const LIMIT = 25;           //for pagination
 
 
+/**
+ * Checks if the user has scrolled till the end of the page in order to load further content.
+ * This important to pangination.
+ * 
+ * @param  {number} gen - Number of current generation.
+ */
 async function checkForScrollTop(gen) {
 
-    if (currentGen != gen) {
-        clearOldGeneration(gen);
-    }
-
+    clearOldGeneration(gen);
 
     setInterval(async function () {
         maxBodyHeight = document.documentElement.offsetHeight - window.innerHeight;
         currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        endOfThePage = currentScrollPosition == maxBodyHeight;
 
         if (currentGen == 1) {
-
-            if (currentScrollPosition == maxBodyHeight && currentLoading == false && id == 24) {
-                currentLoading = true;
-                await initGen('https://pokeapi.co/api/v2/pokemon?limit=25&offset=25', 1);
-                console.log("END id", id);
-            }
-
-            if (currentScrollPosition == maxBodyHeight && currentLoading == false && id == 49) {
-                currentLoading = true;
-                await initGen('https://pokeapi.co/api/v2/pokemon?limit=25&offset=50', 1);
-                console.log("END id", id);
-            }
-
-            if (currentScrollPosition == maxBodyHeight && currentLoading == false && id == 74) {
-                currentLoading = true;
-                await initGen('https://pokeapi.co/api/v2/pokemon?limit=25&offset=75', 1);
-                console.log("END id", id);
-            }
-
-            if (currentScrollPosition == maxBodyHeight && currentLoading == false && id == 99) {
-                currentLoading = true;
-                await initGen('https://pokeapi.co/api/v2/pokemon?limit=25&offset=100', 1);
-                console.log("END id", id);
-            }
-
-            if (currentScrollPosition == maxBodyHeight && currentLoading == false && id == 124) {
-                currentLoading = true;
-                await initGen('https://pokeapi.co/api/v2/pokemon?limit=25&offset=125', 1);
-                console.log("END id", id);
-            }
-
-            if (currentScrollPosition == maxBodyHeight && currentLoading == false && id == 149) {
-                currentLoading = true;
-                await initGen('https://pokeapi.co/api/v2/pokemon?limit=1&offset=150', 1);
-                console.log("END id", id);
-            }
+            await splitGen1();
         }
-
         else if (currentGen == 2) {
-
-            if (currentScrollPosition == maxBodyHeight && currentLoading == false && id == 24) {
-                currentLoading = true;
-                await initGen('https://pokeapi.co/api/v2/pokemon?limit=25&offset=176', 2);
-                console.log("END id", id);
-            }
-
-            if (currentScrollPosition == maxBodyHeight && currentLoading == false && id == 49) {
-                currentLoading = true;
-                await initGen('https://pokeapi.co/api/v2/pokemon?limit=25&offset=201', 2);
-                console.log("END id", id);
-            }
-
-            if (currentScrollPosition == maxBodyHeight && currentLoading == false && id == 74) {
-                currentLoading = true;
-                await initGen('https://pokeapi.co/api/v2/pokemon?limit=25&offset=226', 1);
-                console.log("END id", id);
-            }
-
+            await splitGen2();
         }
-
         else if (currentGen == 3) {
-
-            if (currentScrollPosition == maxBodyHeight && currentLoading == false && id == 24) {
-                currentLoading = true;
-                await initGen('https://pokeapi.co/api/v2/pokemon?limit=25&offset=276', 3);
-                console.log("END id", id);
-            }
-
-            if (currentScrollPosition == maxBodyHeight && currentLoading == false && id == 49) {
-                currentLoading = true;
-                await initGen('https://pokeapi.co/api/v2/pokemon?limit=25&offset=301', 3);
-                console.log("END id", id);
-            }
-
-            if (currentScrollPosition == maxBodyHeight && currentLoading == false && id == 74) {
-                currentLoading = true;
-                await initGen('https://pokeapi.co/api/v2/pokemon?limit=25&offset=326', 3);
-                console.log("END id", id);
-            }
-
-            if (currentScrollPosition == maxBodyHeight && currentLoading == false && id == 99) {
-                currentLoading = true;
-                await initGen('https://pokeapi.co/api/v2/pokemon?limit=25&offset=351', 3);
-                console.log("END id", id);
-            }
-
-            if (currentScrollPosition == maxBodyHeight && currentLoading == false && id == 124) {
-                currentLoading = true;
-                await initGen('https://pokeapi.co/api/v2/pokemon?limit=10&offset=376', 3);
-                console.log("END id", id);
-            }
-
+            await splitGen3();
         }
-
         currentLoading = false;
 
     }, 500)
-
 }
 
 /**
@@ -127,7 +47,6 @@ async function checkForScrollTop(gen) {
  * @param  {number} gen - Number of generation.
  */
 function clearOldGeneration(gen) {
-    alert("Generation ist nun eine andere!");
     currentPokémonList = [];
     fullPokémonList = [];
     id = -1;
@@ -135,6 +54,75 @@ function clearOldGeneration(gen) {
     pokédex.innerHTML = '';
     currentGen = gen;
 }
+
+/**
+ * Splits generation 1 into loading parts for pagination.
+ */
+async function splitGen1() {
+
+    for (let i = 0; i < 5; i++) {
+        let offset = 25 + i * LIMIT;
+        if (checkForLoadingNextPart(i)) {
+            currentLoading = true;
+            await initGen(`https://pokeapi.co/api/v2/pokemon?limit=${LIMIT}&offset=${offset}`, 1);
+            console.log("END id", id);
+        }
+    }
+    
+    //Last part has less entries than 25 (= LIMIT).
+    if (endOfThePage && currentLoading == false && id == 149) {
+        currentLoading = true;
+        await initGen('https://pokeapi.co/api/v2/pokemon?limit=1&offset=150', 1);
+        console.log("END id", id);
+    }
+}
+
+/**
+ * Splits generation 2 into loading parts for pagination.
+ */
+async function splitGen2() {
+
+    for (let i = 0; i < 3; i++) {
+        let offset = 176 + i * LIMIT;
+        if (checkForLoadingNextPart(i)) {
+            currentLoading = true;
+            await initGen(`https://pokeapi.co/api/v2/pokemon?limit=${LIMIT}&offset=${offset}`, 2);
+            console.log("END id", id);
+        }
+    }
+}
+
+/**
+ * Splits generation 3 into loading parts for pagination.
+ */
+async function splitGen3() {
+
+    for (let i = 0; i < 4; i++) {
+        let offset = 276 + i * LIMIT;
+        if (checkForLoadingNextPart(i)) {
+            currentLoading = true;
+            await initGen(`https://pokeapi.co/api/v2/pokemon?limit=${LIMIT}&offset=${offset}`, 3);
+            console.log("END id", id);
+        }
+    }
+
+    //Last part has less entries than 25 (= LIMIT).
+    if (endOfThePage && currentLoading == false && id == 124) {
+        currentLoading = true;
+        await initGen('https://pokeapi.co/api/v2/pokemon?limit=10&offset=376', 3);
+        console.log("END id", id);
+    }
+}
+
+/**
+ * Checks if the requirements are reached for loading next part.
+ * 
+ * @param  {number} i - Part number.
+ */
+function checkForLoadingNextPart(i) {
+    return endOfThePage && currentLoading == false && id == (24 + i * LIMIT);
+}
+  
 
 /**
  * Loads general pokémon generation API data.
@@ -146,8 +134,6 @@ async function initGen(url, gen) {
     console.log("INIT GEN AUSGEFÜHRT!");
     disableBtn(gen);
 
-    //let pokédex = document.getElementById('pokédex');
-    //pokédex.innerHTML = '';
     currentPokémonList = [];
 
     let response = await fetch(url);
