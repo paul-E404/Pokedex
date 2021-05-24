@@ -14,7 +14,7 @@ const LIMIT = 25;           //for pagination
 
 /**
  * Checks if the user has scrolled till the end of the page in order to load further content.
- * This important to pangination.
+ * This is important to pangination.
  * 
  * @param  {number} gen - Number of current generation.
  */
@@ -30,15 +30,12 @@ async function checkForScrollTop(gen) {
 
         if (currentGen == 1) {
             await splitGen1();
-            currentLoading = false;
         }
         else if (currentGen == 2) {
             await splitGen2();
-            currentLoading = false;
         }
         else if (currentGen == 3) {
             await splitGen3();
-            currentLoading = false;
         }
         
     }, 500)
@@ -68,6 +65,7 @@ async function splitGen1() {
         if (checkForLoadingNextPart(i)) {
             currentLoading = true;
             await initGen(`https://pokeapi.co/api/v2/pokemon?limit=${LIMIT}&offset=${offset}`, 1);
+            currentLoading = false;
             console.log("END id", id);
         }
     }
@@ -90,6 +88,7 @@ async function splitGen2() {
         if (checkForLoadingNextPart(i)) {
             currentLoading = true;
             await initGen(`https://pokeapi.co/api/v2/pokemon?limit=${LIMIT}&offset=${offset}`, 2);
+            currentLoading = false;
             console.log("END id", id);
         }
     }
@@ -105,6 +104,7 @@ async function splitGen3() {
         if (checkForLoadingNextPart(i)) {
             currentLoading = true;
             await initGen(`https://pokeapi.co/api/v2/pokemon?limit=${LIMIT}&offset=${offset}`, 3);
+            currentLoading = false;
             console.log("END id", id);
         }
     }
